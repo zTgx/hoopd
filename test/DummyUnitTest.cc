@@ -25,5 +25,5 @@ TEST_F(DummyTest, DummyTest)
 {
     int x = get();
     int expected = 3;
-    ASSERT_STRCASEEQ(x, expected);
+    EXPECT_EQ(x, expected);
 }

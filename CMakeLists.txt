@@ -6,15 +6,21 @@ SET(PROJECTNAME watermelon)
 PROJECT(${PROJECTNAME})
 
 CMAKE_MINIMUM_REQUIRED(VERSION 3.15.0)
-AUX_SOURCE_DIRECTORY(./src DIR_MAIN_SRCS)
-ADD_EXECUTABLE(${PROJECTNAME} ${DIR_MAIN_SRCS})
+
+add_subdirectory (src)
+add_subdirectory (test)
+
+# ADD_EXECUTABLE(${PROJECTNAME} ${DIR_MAIN_SRCS})
 
 SET(CMAKE_CXX_STANDARD 17)
+enable_testing ()
+add_test (NAME UnitTest COMMAND Test)
 
 #TARGET_LINK_LIBRARIES(${PROJECTNAME} -lpthread)
 
 # include_directories(/usr/local)
-link_directories(/usr/local/lib)
-target_link_libraries(${PROJECTNAME} libgtest.a)
-target_link_libraries(${PROJECTNAME} libgtest_main.a)
-target_link_libraries(${PROJECTNAME} -lpthread)
+# link_directories("/usr/local/lib")
+# LINK_LIBRARIES("/usr/local/lib/libgtest.a")
+# target_link_libraries(${PROJECTNAME} libgtest.a)
+# target_link_libraries(${PROJECTNAME} libgtest_main.a)
+# target_link_libraries(${PROJECTNAME} -lpthread)

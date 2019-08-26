@@ -3,6 +3,6 @@
 
 TEST(PredicateAssertionTest, watermelon) {
     Dummy* dummy_ptr = new Dummy(3);
-
-    ASSERT_STRCASEEQ(dummy_ptr->get(), 3);
+    int v = dummy_ptr->get();
+    EXPECT_EQ(v, 3);
 }
