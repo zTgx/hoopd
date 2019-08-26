@@ -13,4 +13,4 @@ target_link_libraries (UnitTest Dummy)
 target_link_libraries (UnitTest gtest)
 target_link_libraries (UnitTest gtest_main)
 
-add_test (NAME UnitTest COMMAND Test)
+add_test (NAME UnitTest COMMAND UnitTest)

@@ -14,7 +14,7 @@ add_subdirectory (test)
 
 SET(CMAKE_CXX_STANDARD 17)
 enable_testing ()
-add_test (NAME UnitTest COMMAND Test)
+add_test (NAME UnitTest COMMAND UnitTest)
 
 #TARGET_LINK_LIBRARIES(${PROJECTNAME} -lpthread)
 
