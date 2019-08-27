@@ -39,27 +39,28 @@ void init_spt() {
 }
 
 void run() {
-  Server svr;
+    Server svr;
 
-  svr.Get("/", [](const Request& req, Response& res) {
-      res.set_content("Hello World!", "text/plain");
-  });
+    svr.Get("/", [](const Request& req, Response& res) {
+        res.set_content("Hello World!", "text/plain");
+    });
 
-  svr.Get("/hi", [](const Request& req, Response& res) {
-      res.set_content("Hello World!", "text/plain");
+    svr.Get("/hi", [](const Request& req, Response& res) {
+        res.set_content("Hello World!", "text/plain");
 
-  });
+    });
 
-  svr.Get(R"(/numbers/(\d+))", [&](const Request& req, Response& res) {
-      auto numbers = req.matches[1];
-      res.set_content(numbers, "text/plain");
-  });
+    svr.Get(R"(/numbers/(\d+))", [&](const Request& req, Response& res) {
+        auto numbers = req.matches[1];
+        res.set_content(numbers, "text/plain");
+    });
 
-  svr.Get("/stop", [&](const Request& req, Response& res) {
-      svr.stop();
-  });
+    svr.Get("/stop", [&](const Request& req, Response& res) {
+        svr.stop();
+    });
 
-  svr.listen("localhost", 1234);
+    std::cout << "\nlistening at localhost:1234" << std::endl;
+    svr.listen("localhost", 1234);
 }
 
 int main() {
