@@ -1,6 +1,8 @@
 #include <iostream>
 #include <httplib.h>
 #include <seephit.h>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/basic_file_sink.h>
 
 using namespace httplib;
 using namespace std;
@@ -64,6 +66,8 @@ void run() {
 }
 
 int main() {
+  spdlog::info("Welcome to spdlog!");
+
   init_spt();
   run();
 }

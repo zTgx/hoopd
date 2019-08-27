@@ -1,3 +1,6 @@
 [submodule "depend/cpp-httplib"]
 	path = depend/cpp-httplib
 	url = https://github.com/yhirose/cpp-httplib.git
+[submodule "depend/spdlog"]
+	path = depend/spdlog
+	url = https://github.com/gabime/spdlog.git
