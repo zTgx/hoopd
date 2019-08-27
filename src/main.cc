@@ -1,9 +1,44 @@
 #include <iostream>
 #include <httplib.h>
+#include <seephit.h>
 
 using namespace httplib;
+using namespace std;
 
-int main() {
+void callback(ostream &, const string &sParam, spt::template_vals &) {
+
+}
+
+void init_spt() {
+    constexpr auto parser =
+    R"*(
+    <span >
+    <p  color="red" height='10' >{{name}} is a {{profession}} in {{city}}</p  >
+    </span>
+    )*"_html;
+
+    spt::tree spt_tree(parser);
+
+    spt::template_vals dct;
+    dct["name"] = "Mary";
+    dct["profession"] = "doctor";
+    dct["city"] = "London";
+
+    spt::template_funs calls;
+    calls.insert (std::make_pair<std::string, spt::template_fun>("call", callback));
+
+    spt_tree.root().render(cerr, dct, calls);
+    cerr << endl;
+
+    dct["city"] = "New York";
+    dct["name"] = "John";
+    dct["profession"] = "janitor";
+
+    spt_tree.root().render(cerr, dct, calls);
+    cerr << endl;
+}
+
+void run() {
   Server svr;
 
   svr.Get("/", [](const Request& req, Response& res) {
@@ -25,4 +60,9 @@ int main() {
   });
 
   svr.listen("localhost", 1234);
+}
+
+int main() {
+  init_spt();
+  run();
 }

@@ -13,14 +13,6 @@ add_subdirectory (test)
 # ADD_EXECUTABLE(${PROJECTNAME} ${DIR_MAIN_SRCS})
 
 SET(CMAKE_CXX_STANDARD 17)
+
 enable_testing ()
 add_test (NAME UnitTest COMMAND UnitTest)
-
-#TARGET_LINK_LIBRARIES(${PROJECTNAME} -lpthread)
-
-# include_directories(/usr/local)
-# link_directories("/usr/local/lib")
-# LINK_LIBRARIES("/usr/local/lib/libgtest.a")
-# target_link_libraries(${PROJECTNAME} libgtest.a)
-# target_link_libraries(${PROJECTNAME} libgtest_main.a)
-# target_link_libraries(${PROJECTNAME} -lpthread)
