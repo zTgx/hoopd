@@ -1,0 +1,7 @@
+R"*(
+<HTML>
+  <DIV> 
+    Space after open bracket
+  < /DIV>
+</HTML>
+)*"_html; 

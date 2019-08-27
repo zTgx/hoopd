@@ -1,0 +1,6 @@
+R"*(
+<HTML>
+  <P> Space before void tag close angle bracket</P>
+  <IMG/ >
+</HTML>
+)*"_html; 

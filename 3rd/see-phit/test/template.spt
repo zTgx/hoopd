@@ -1,0 +1,10 @@
+R"*(
+<span >
+  <pre  color="red" height='1' >
+  
+{{name}} is a {{profession}}
+{{name}} lives in {{city}}
+  
+  </pre  >
+</span>
+)*"_html; 
