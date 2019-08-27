@@ -1,5 +1,5 @@
 add_subdirectory(../depend/cpp-httplib httplib)
-add_subdirectory(../depend/see-phit seephit)
+add_subdirectory(../3rd/see-phit seephit)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
