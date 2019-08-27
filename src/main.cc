@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <httplib.h>
 #include <seephit.h>
 #include <spdlog/spdlog.h>
@@ -11,7 +12,7 @@ void callback(ostream &, const string &sParam, spt::template_vals &) {
 
 }
 
-void init_spt() {
+std::string init_spt() {
     constexpr auto parser =
     R"*(
     <span >
@@ -29,22 +30,32 @@ void init_spt() {
     spt::template_funs calls;
     calls.insert (std::make_pair<std::string, spt::template_fun>("call", callback));
 
-    spt_tree.root().render(cerr, dct, calls);
-    cerr << endl;
+    std::stringstream buffer;
+
+    spt_tree.root().render(buffer, dct, calls);
+    buffer << endl;
 
     dct["city"] = "New York";
     dct["name"] = "John";
     dct["profession"] = "janitor";
 
-    spt_tree.root().render(cerr, dct, calls);
-    cerr << endl;
+    spt_tree.root().render(buffer, dct, calls);
+    buffer << endl;
+
+    std::string s;
+    buffer >> s;
+
+    spdlog::info(s);
+
+    return s;
 }
 
-void run() {
+void run(std::string& s) {
     Server svr;
 
-    svr.Get("/", [](const Request& req, Response& res) {
-        res.set_content("Hello World!", "text/plain");
+    svr.Get("/", [s](const Request& req, Response& res) {
+        //res.set_content("Hello World!", "text/plain");
+        res.set_content(s.c_str(), "text/plain");
     });
 
     svr.Get("/hi", [](const Request& req, Response& res) {
@@ -72,6 +83,6 @@ int main() {
   spdlog::critical("Support for int: {0:d};  hex: {0:x};  oct: {0:o}; bin: {0:b}", 42);
   spdlog::debug("This message should be displayed..");
 
-  init_spt();
-  run();
+  std::string s = init_spt();
+  run(s);
 }
