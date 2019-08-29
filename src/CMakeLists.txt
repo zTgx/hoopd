@@ -1,6 +1,7 @@
 add_subdirectory(../depend/cpp-httplib httplib)
-add_subdirectory(../3rd/see-phit seephit)
 add_subdirectory(../depend/spdlog spdlog)
+add_subdirectory(../3rd/see-phit seephit)
+add_subdirectory(../3rd/leveldb leveldb)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -13,3 +14,4 @@ target_link_libraries (wtm Dummy)
 target_link_libraries (wtm httplib)
 target_link_libraries (wtm seephit)
 target_link_libraries (wtm spdlog)
+target_link_libraries (wtm leveldb)

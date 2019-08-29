@@ -4,9 +4,38 @@
 #include <seephit.h>
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
+#include <leveldb/db.h>
 
 using namespace httplib;
 using namespace std;
+using namespace leveldb;
+
+void leveldb_init() {
+    DB *db;
+    Options options;
+    options.create_if_missing = true;
+
+    Status s = DB::Open(options,"./data/login.db",&db);
+    if(!s.ok()){
+          cerr << s.ToString() << endl;exit(-1);
+    }
+    string key = "name",val = "ciaos";
+    s = db->Put(WriteOptions(),key,val);
+    if(!s.ok()){
+          cerr << s.ToString() << endl;exit(-1);
+    }
+    s = db->Get(ReadOptions(),key,&val);
+    if(s.ok()){
+          cout << key << "=" << val << endl;
+          s = db->Put(leveldb::WriteOptions(),"key2",val);
+          if(s.ok()){
+                  s = db->Delete(leveldb::WriteOptions(),key);
+                  if(!s.ok()){
+                          cerr << s.ToString() << endl;exit(-1);
+                  }
+          }
+    }
+}
 
 void callback(ostream &, const string &sParam, spt::template_vals &) {
 
@@ -83,6 +112,9 @@ int main() {
   spdlog::critical("Support for int: {0:d};  hex: {0:x};  oct: {0:o}; bin: {0:b}", 42);
   spdlog::debug("This message should be displayed..");
 
-  std::string s = init_spt();
-  run(s);
+  leveldb_init();
+
+  // std::string s = init_spt();
+  // run(s);
+
 }
