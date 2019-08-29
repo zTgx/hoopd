@@ -31,3 +31,4 @@ make test
 * `spdlog`, a fast C++ logging library.
 * `googletest`, a Testing and mocking framework.
 * `see-phit`, a compile time HTML templating library written in modern C++.
+* `leveldb`, a fast key-value storage library written at Google that provides an ordered mapping from string keys to string values. 
