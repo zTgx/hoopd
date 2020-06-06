@@ -1,10 +1,10 @@
 # [watermelon](https://github.com/mameye/watermelon)
-A hodgepodge project.
+A HTTP server.
 
 ### Usage
 ##### Step1
 ```shell
-git clone --recursive https://github.com/mameye/watermelon.git
+git clone --recursive https://github.com/zTgx/hoopServer.git
 ```
 ##### Step2
 ```shell
@@ -22,7 +22,7 @@ make test
 
 ##### Step5
 ```shell
-./bin/wtm
+./bin/hoopServer
 ```
 
 ---
