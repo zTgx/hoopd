@@ -5,10 +5,10 @@
 SET(PROJECTNAME hoopserver)
 PROJECT(${PROJECTNAME})
 
-CMAKE_MINIMUM_REQUIRED(VERSION 3.15.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.10.0)
 
 add_subdirectory (src)
-add_subdirectory (test)
+# add_subdirectory (test)
 
 # ADD_EXECUTABLE(${PROJECTNAME} ${DIR_MAIN_SRCS})
 

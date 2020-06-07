@@ -1,8 +1,0 @@
-R"*(
-<if con=0>
-  <div>
-    a
-  </div>
-</if>
-
-)*"_html; 

@@ -1,7 +1,0 @@
-R"*(
-<for var=n from=0 to=5 >
-    <div>
-      item{{$double@n}} is twice of {{$quote@n}}
-    </div>
-</for>
-)*"_html;

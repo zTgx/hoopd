@@ -1,9 +1,0 @@
-R"*(
-<HTML>
-  <DIV> 
-    Tag closed outside parent
-    <STRONG>
-  </DIV>
-  </STRONG>
-</HTML>
-)*"_html; 

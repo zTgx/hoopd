@@ -1,9 +1,0 @@
-R"*(
-<div> 
-  ONE 
-  <span>TWO</span> 
-  TWOANDOFF 
-  <p>THREE</p> 
-  THREENDOFF 
-</div>
-)*"_html; 

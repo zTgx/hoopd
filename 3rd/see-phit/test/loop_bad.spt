@@ -1,7 +1,0 @@
-R"*(
-<for from=0 to=5>
-  <div>
-    item{{n}}
-  </div>
-</for>
-)*"_html;

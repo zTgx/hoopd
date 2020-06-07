@@ -1,7 +1,0 @@
-R"*(
-<HTML>
-  <DIV>
-  Mismatched closing tag
-  </DIVV>
-</HTML>
-)*"_html; 
