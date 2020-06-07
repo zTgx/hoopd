@@ -1,8 +1,8 @@
-#Author : beautifularea
-#Date   : 26/8/2019
-#Desc   : web
+#Author : zTgx [747674262@qq.com]
+#Date   : 2020/6/7
+#Desc   : a http server
 
-SET(PROJECTNAME watermelon)
+SET(PROJECTNAME hoopserver)
 PROJECT(${PROJECTNAME})
 
 CMAKE_MINIMUM_REQUIRED(VERSION 3.15.0)
