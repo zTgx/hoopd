@@ -2,7 +2,7 @@
 #Date   : 2020/6/7
 #Desc   : a http server
 
-SET(PROJECTNAME hoopserver)
+SET(PROJECTNAME hoopd)
 PROJECT(${PROJECTNAME})
 
 CMAKE_MINIMUM_REQUIRED(VERSION 3.10.0)

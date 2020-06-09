@@ -1,10 +1,10 @@
-# [hoopServer](https://github.com/zTgx/hoopServer)
+# [hoopd](https://github.com/zTgx/hoopd)
 A simple HTTP server.
 
 ### Usage
 ##### Step1
 ```shell
-git clone --recursive https://github.com/zTgx/hoopServer.git
+git clone --recursive https://github.com/zTgx/hoopd.git
 ```
 ##### Step2
 ```shell
@@ -16,11 +16,5 @@ cmake .. && make
 ```
 ##### Step4
 ```shell
-./bin/hoopServer
+./bin/hoopd
 ```
-
----
-### depend
-* [cpp-httplib](https://github.com/yhirose/cpp-httplib.git), a head-only http server.
-* [spdlog](https://github.com/gabime/spdlog.git), a fast C++ logging library.
-* [googletest](https://github.com/google/googletest.git), a Testing and mocking framework.
