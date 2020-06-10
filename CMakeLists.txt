@@ -12,7 +12,7 @@ add_subdirectory (src)
 
 # ADD_EXECUTABLE(${PROJECTNAME} ${DIR_MAIN_SRCS})
 
-SET(CMAKE_CXX_STANDARD 17)
+SET(CMAKE_CXX_STANDARD 11)
 
 enable_testing ()
 add_test (NAME UnitTest COMMAND UnitTest)
