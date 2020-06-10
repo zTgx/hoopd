@@ -3,6 +3,7 @@
 #include <httplib.h>
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
+#include "dummy.h"
 
 using namespace httplib;
 using namespace std;
@@ -36,6 +37,10 @@ void run(std::string& s) {
 int main() {
     std::string welcome("Welcome to hoopd!");
     spdlog::info(welcome);
+
+    Dummy d(1);
+    int x = d.get();
+    std::cout << "x : " << x << std::endl;
 
     run(welcome);
 }
