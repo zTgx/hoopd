@@ -7,13 +7,12 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # executable
 aux_source_directory(. SRCS)
-add_executable (helloworld ${SRCS})
+add_executable (echo ${SRCS})
 
 # link sub lib
 LINK_LIBRARIES(../../build/lib/libhoopd.a)
-LINK_LIBRARIES(../../build/lib/libdummy.a)
 
 # libhoopd header directory
 include_directories(../../src)
 
-target_link_libraries (helloworld pthread)
+target_link_libraries (echo pthread)
