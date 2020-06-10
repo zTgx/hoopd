@@ -1,7 +1,8 @@
 # [hoopd](https://github.com/zTgx/hoopd)
 hoopd will be a simple and easy to use restful server written in C++11.
 
-### How to use and run
+---  
+## How to build from source
 #### Zero : recursive clone source code
 ```shell
 git clone --recursive https://github.com/zTgx/hoopd.git
