@@ -3,8 +3,7 @@
 
 int main() {
     Hoopd hoopd;
-    hoopd.set();
-
+    hoopd.run();
 }
 
 // #include <iostream>

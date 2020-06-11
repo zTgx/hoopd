@@ -1,10 +1,9 @@
 
-# subdirectory
-# add_subdirectory(dummy)
-
 # hoopd
 aux_source_directory(. SRCS)
-add_library(hoopd ${SRCS})
 
-# link sub lib
-# target_link_libraries (hoopd dummy)
+# dummy 
+aux_source_directory(./dummy D_SRC)
+
+# lib
+add_library(hoopd ${SRCS} ${D_SRC})

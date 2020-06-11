@@ -1,4 +1,4 @@
-#include "../dummy.h"
+#include "dummy.h"
 
 int Dummy::get() {
     return this->t;

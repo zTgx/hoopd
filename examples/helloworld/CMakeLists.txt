@@ -11,7 +11,6 @@ add_executable (helloworld ${SRCS})
 
 # link sub lib
 LINK_LIBRARIES(../../build/lib/libhoopd.a)
-LINK_LIBRARIES(../../build/lib/libdummy.a)
 
 # libhoopd header directory
 include_directories(../../src)

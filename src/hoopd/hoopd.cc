@@ -1,6 +1,12 @@
 #include "hoopd.h"
 #include <iostream>
+#include "httplib.h"
+#include "dummy/dummy.h"
 
-// void Hoopd::set() {
-//     std::cout << "hello world." << std::endl;
-// }
+using namespace httplib;
+
+void Hoopd::run() {
+    Server svr;
+
+    
+}
