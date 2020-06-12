@@ -18,4 +18,12 @@ bool HttpServer::run() {
 
     return true;
 }
+
+// ---------------------------
+void HttpServer::set_scope(const std::string&) {
+}
+
+void HttpServer::get(const std::string&, Handler) {
+}
+
 } // namespace hoopd
