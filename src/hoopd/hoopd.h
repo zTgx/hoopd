@@ -1,27 +1,28 @@
 
 namespace hoopd {
-    class HttpServer {
-        public:
-            // Constructor
-            HttpServer();
+class HttpServer {
+public:
+    // Constructor
+    HttpServer();
 
-            // Destructor
-            ~HttpServer();
-            
-            // Copy Constructor
-            HttpServer(const HttpServer&);
+    // Destructor
+    virtual ~HttpServer();
+    
+public:
+    // HttpServer run 
+    virtual bool run();
 
-            // Copy Assignment Operator
-            HttpServer& operator=(const HttpServer& rhs);
+public:
+    // Copy Constructor
+    HttpServer(const HttpServer&) = delete;
 
-            // Move Constructor
-            HttpServer(HttpServer&& moved);
+    // Copy Assignment Operator
+    HttpServer& operator=(const HttpServer& rhs) = delete;
 
-            // Move Assignment Operator
-            HttpServer& operator=(HttpServer&& moved);
+    // Move Constructor
+    HttpServer(HttpServer&& moved) = delete;
 
-        public:
-            // HttpServer run 
-            virtual bool run() = 0;
-    };
+    // Move Assignment Operator
+    HttpServer& operator=(HttpServer&& moved) = delete;
+};
 }

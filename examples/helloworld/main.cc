@@ -2,8 +2,8 @@
 #include <hoopd/hoopd.h>
 
 int main() {
-    Hoopd hoopd;
-    hoopd.run();
+    hoopd::HttpServer server;
+    server.run();
 }
 
 // #include <iostream>

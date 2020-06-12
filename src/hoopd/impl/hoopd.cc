@@ -1,8 +1,17 @@
 #include <hoopd/hoopd.h>
 #include <iostream>
 
+namespace hoopd
+{
+HttpServer::HttpServer() {
+}
 
-// void Hoopd::run() {
-//     Dummy d(3);
-//     d.get();
-// }
+HttpServer::~HttpServer() {
+}
+
+bool HttpServer::run() {
+    std::cout << "hoopd is started running ... " << std::endl;
+
+    return true;
+}
+} // namespace hoopd
