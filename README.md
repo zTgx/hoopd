@@ -2,20 +2,20 @@
 hoopd will be a simple and easy to use restful server written in C++11.
 
 ---  
-## How to build from source
+## How to use examples
 #### Zero : recursive clone source code
 ```shell
 git clone --recursive https://github.com/zTgx/hoopd.git
 ```
-#### One: create build directory 
+#### One: build hoopd library
 ```shell
-mkdir build && cd build
+mkdir build && cd build && cmake .. && make
 ```
-#### Two: run cmake and make
+#### Two: to examples/helloworld
 ```shell
-cmake .. && make
+cd examples/helloworld && mkdir build && cd build && cmake .. && make 
 ```
-#### Last: run hoopd in command line
+#### Last: run helloworld binary
 ```shell
-./bin/hoopd
+./bin/helloworld
 ```
