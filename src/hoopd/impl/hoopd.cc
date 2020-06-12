@@ -1,6 +1,5 @@
-#include "hoopd.h"
+#include <hoopd/hoopd.h>
 #include <iostream>
-#include "dummy/dummy.h"
 
 
 // void Hoopd::run() {

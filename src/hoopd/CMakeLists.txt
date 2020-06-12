@@ -1,9 +1,5 @@
-
 # hoopd
-aux_source_directory(. SRCS)
-
-# dummy 
-aux_source_directory(./dummy D_SRC)
+aux_source_directory(./impl IMPL)
 
 # lib
-add_library(hoopd STATIC ${SRCS} ${D_SRC})
+add_library(hoopd STATIC ${IMPL})
