@@ -1,6 +1,8 @@
 #include <string>
 
+namespace hoopd {
 struct Settings {
-    std::string host;
-    size_t      port;
+    std::string host = "localhost";
+    size_t      port = 9527;
 };
+}

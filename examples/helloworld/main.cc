@@ -2,7 +2,9 @@
 #include <hoopd/hoopd.h>
 
 int main() {
-    hoopd::HttpServer server{"localhost", 8080};
+    hoopd::Settings defaultSettings;
+    hoopd::HttpServer server(defaultSettings);
+    
     server.run();
 }
 
