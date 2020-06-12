@@ -3,7 +3,7 @@
 
 namespace hoopd
 {
-HttpServer::HttpServer(const Settings& settings) {
+HttpServer::HttpServer(const Settings& settings) : noncopyable() {
 }
 
 HttpServer::~HttpServer() {
