@@ -1,25 +1,26 @@
 namespace hoopd {
-    class Request {
-        public:
-            // Constructor
-            Request();
+class Request {
+public:
+    // Constructor
+    Request();
 
-            // Destructor
-            ~Request();
-            
-            // Copy Constructor
-            Request(const Request&);
+    // Destructor
+    virtual ~Request();
+    
+public:
+    // Copy Constructor
+    Request(const Request&) = delete;
 
-            // Copy Assignment Operator
-            Request& operator=(const Request& rhs);
+    // Copy Assignment Operator
+    Request& operator=(const Request& rhs) = delete;
 
-            // Move Constructor
-            Request(Request&& moved);
+    // Move Constructor
+    Request(Request&& moved) = delete;
 
-            // Move Assignment Operator
-            Request& operator=(Request&& moved);
+    // Move Assignment Operator
+    Request& operator=(Request&& moved) = delete;
 
-        public:
-            bool reset();
-    };
+public:
+    bool reset();
+};
 }
