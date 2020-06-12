@@ -1,4 +1,4 @@
 class Hoopd {
 public:
-    void run() ;
+    void run();
 };
