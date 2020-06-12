@@ -3,7 +3,7 @@
 
 namespace hoopd
 {
-HttpServer::HttpServer() {
+HttpServer::HttpServer(const Settings& settings) {
 }
 
 HttpServer::~HttpServer() {

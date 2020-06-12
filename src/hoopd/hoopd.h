@@ -1,28 +1,17 @@
+#include <hoopd/settings.h>
+#include <hoopd/nocopyable.h>
 
 namespace hoopd {
-class HttpServer {
+class HttpServer : public noncopyable {
 public:
     // Constructor
-    HttpServer();
+    explicit HttpServer(const Settings&);
 
     // Destructor
     virtual ~HttpServer();
-    
+
 public:
     // HttpServer run 
     virtual bool run();
-
-public:
-    // Copy Constructor
-    HttpServer(const HttpServer&) = delete;
-
-    // Copy Assignment Operator
-    HttpServer& operator=(const HttpServer& rhs) = delete;
-
-    // Move Constructor
-    HttpServer(HttpServer&& moved) = delete;
-
-    // Move Assignment Operator
-    HttpServer& operator=(HttpServer&& moved) = delete;
 };
 }
