@@ -1,3 +1,0 @@
-namespace hoopd {
-class Service {};
-}

@@ -1,5 +1,5 @@
-#ifndef __HOOPD_HTTPHEADER_H_
-#define __HOOPD_HTTPHEADER_H_
+#ifndef __HOOPD_INTERNAL_HTTPHEADER_H_
+#define __HOOPD_INTERNAL_HTTPHEADER_H_
 
 #include <unordered_map>
 

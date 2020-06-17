@@ -16,6 +16,12 @@ HttpServer::~HttpServer() {
 bool HttpServer::run() {
     std::cout << "hoopd is started running ... " << std::endl;
 
+    // bind
+
+    // run
+    _service.set_settings(_settings);
+    _service.run();
+
     return true;
 }
 

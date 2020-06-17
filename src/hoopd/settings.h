@@ -1,3 +1,6 @@
+#ifndef __HOOPD_SETTINGS_H_
+#define __HOOPD_SETTINGS_H_
+
 #include <string>
 
 namespace hoopd {
@@ -6,3 +9,5 @@ struct Settings {
     size_t      port = 9527;
 };
 }
+
+#endif

@@ -3,7 +3,7 @@
 
 #include <hoopd/internal/nocopyable.h>
 #include <hoopd/settings.h>
-#include <hoopd/service.h>
+#include <hoopd/internal/service.h>
 #include <hoopd/request.h>
 #include <hoopd/response.h>
 
@@ -31,6 +31,6 @@ public:
 
 private:
     Settings _settings;
-    Service service;
+    Service _service;
 };
 }
