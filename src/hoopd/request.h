@@ -1,4 +1,5 @@
 #include <hoopd/internal/descriptable.h>
+#include <hoopd/internal/httpheader.h>
 
 namespace hoopd {
 class Request : public Descriptable {
@@ -11,6 +12,9 @@ public:
     
 public:
     const void description() const;
+
+public:
+    Method method;
     
 public:
     // Copy Constructor
