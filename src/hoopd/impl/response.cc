@@ -2,7 +2,7 @@
 #include <iostream>
 
 namespace hoopd {
-void Response::description() {
+const void Response::description() const {
     std::cout << "Response description..." << std::endl;
 }
 }

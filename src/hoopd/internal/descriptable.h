@@ -4,7 +4,7 @@
 namespace hoopd {
 class Descriptable {
 public:
-    virtual void description() = 0;
+    virtual const void description() const = 0;
 };
 }
 

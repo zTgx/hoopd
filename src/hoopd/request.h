@@ -10,7 +10,7 @@ public:
     virtual ~Request();
     
 public:
-    void description();
+    const void description() const;
     
 public:
     // Copy Constructor
