@@ -4,8 +4,12 @@
 
 #include <hoopd/internal/service.h>
 #include <iostream>
+#include <string.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 
-#define MAX_EVENTS 10
+#define MAX_EVENTS 1024
 
 namespace hoopd {
 void Service::set_settings(const Settings& settings) {
@@ -13,44 +17,39 @@ void Service::set_settings(const Settings& settings) {
 }
 
 bool Service::run() {
-    int socket_desc = socket(AF_INET, SOCK_STREAM, 0);
-	if (socket_desc == -1){
-		printf("Could not create socket");
-	}
-
-    // bind 
-    struct sockaddr_in server;
-
-    const char* host = _settings.host.c_str();
-    size_t port = _settings.port;
-    
-	server.sin_addr.s_addr = inet_addr(host);
-	server.sin_family = AF_INET;
-	server.sin_port = htons(port);
-
-	if( bind(socket_desc,(struct sockaddr *)&server , sizeof(server)) < 0)
-	{
-		//print the error message
-		perror("bind failed. Error");
-		return 1;
-	}
-	std::cout << "bind done" << std::endl;
-
-    listen(socket_desc, 3);
-
-    std::cout << "listening on: " << _settings.host << ":" << _settings.port << std::endl;
-
     struct epoll_event ev, events[MAX_EVENTS];
     int listen_sock, conn_sock, nfds, epollfd;
+    struct sockaddr_in address;    
 
-    /* Code to set up listening socket, 'listen_sock',
-        (socket(), bind(), listen()) omitted */
+    const char *hello = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 12\n\nHello hoopd!";
+    
+    // Creating socket file descriptor
+    if ((listen_sock = socket(AF_INET, SOCK_STREAM, 0)) == 0)
+    {
+        perror("In socket");
+        exit(EXIT_FAILURE);
+    }
 
-    std::cout << "epoll create 1" << std::endl;
+    size_t port = _settings.port;
+
+    address.sin_family = AF_INET;
+    address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_port = htons(port);
+    
+    memset(address.sin_zero, '\0', sizeof address.sin_zero);
+    
+    if (bind(listen_sock, (struct sockaddr *)&address, sizeof(address))<0)
+    {
+        perror("In bind");
+        exit(EXIT_FAILURE);
+    }
+    if (listen(listen_sock, 10) < 0)
+    {
+        perror("In listen");
+        exit(EXIT_FAILURE);
+    }
 
     epollfd = epoll_create1(0);
-    std::cout << "epollfd : " << epollfd << std::endl;
-
     if (epollfd == -1) {
         perror("epoll_create1");
         exit(EXIT_FAILURE);
@@ -63,14 +62,10 @@ bool Service::run() {
         exit(EXIT_FAILURE);
     }
 
-    std::cout << "while(true)" << std::endl;
-
-    while (true) {
-        std::cout << "start await ..." << std::endl;
+    while(1) {
+        printf("\n+++++++ Waiting for new connection ++++++++\n\n");
 
         nfds = epoll_wait(epollfd, events, MAX_EVENTS, -1);
-        std::cout << "nfds: " << nfds << std::endl;
-
         if (nfds == -1) {
             perror("epoll_wait");
             exit(EXIT_FAILURE);
@@ -97,11 +92,20 @@ bool Service::run() {
                 }
             } else {
                 // do_use_fd(events[n].data.fd);
-                std::cout << "do use fd = " << events[n].data.fd << std::endl;
+                int fd  = events[n].data.fd;
+                char buffer[30000] = {0};
+                long valread = read( fd , buffer, 30000);
+                std::cout << "read buffer : " << buffer << std::endl;
+
+                size_t n = write(fd , hello , strlen(hello));
+                (void)n;
+                std::cout << "------------------Hello message sent-------------------" << std::endl;
+                close(fd);
             }
         }
     }
 
-    return true;
+    return 0;
 }
+
 }
