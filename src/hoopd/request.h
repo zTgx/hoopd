@@ -3,14 +3,12 @@
 
 #include <hoopd/internal/descriptable.h>
 #include <hoopd/internal/httpheader.h>
+#include <hoopd/internal/nocopyable.h>
 
 namespace hoopd {
-class Request : public Descriptable {
+class Request : public Descriptable, public noncopyable {
 public:
-    // Constructor
     Request();
-
-    // Destructor
     virtual ~Request();
     
 public:
@@ -20,19 +18,6 @@ public:
     Method method;
     Headers headers;
     
-public:
-    // Copy Constructor
-    Request(const Request&) = delete;
-
-    // Copy Assignment Operator
-    Request& operator=(const Request& rhs) = delete;
-
-    // Move Constructor
-    Request(Request&& moved) = delete;
-
-    // Move Assignment Operator
-    Request& operator=(Request&& moved) = delete;
-
 public:
     bool reset();
 };
