@@ -1,11 +1,16 @@
+#include <hoopd/internal/descriptable.h>
+
 namespace hoopd {
-class Response {
+class Response : public Descriptable {
 public:
     // Constructor
     Response();
 
     // Destructor
     virtual ~Response();
+
+public: 
+    void description();
     
 public:
     // Copy Constructor

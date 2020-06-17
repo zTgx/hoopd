@@ -1,11 +1,16 @@
+#include <hoopd/internal/descriptable.h>
+
 namespace hoopd {
-class Request {
+class Request : public Descriptable {
 public:
     // Constructor
     Request();
 
     // Destructor
     virtual ~Request();
+    
+public:
+    void description();
     
 public:
     // Copy Constructor

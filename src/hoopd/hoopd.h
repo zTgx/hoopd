@@ -1,5 +1,5 @@
 #include <functional> //std::function
-#include <hoopd/nocopyable.h>
+#include <hoopd/internal/nocopyable.h>
 #include <hoopd/settings.h>
 #include <hoopd/service.h>
 #include <hoopd/request.h>
