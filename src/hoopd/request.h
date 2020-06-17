@@ -1,3 +1,6 @@
+#ifndef __HOOPD_REQUEST_H_
+#define __HOOPD_REQUEST_H_
+
 #include <hoopd/internal/descriptable.h>
 #include <hoopd/internal/httpheader.h>
 
@@ -34,3 +37,5 @@ public:
     bool reset();
 };
 }
+
+#endif
