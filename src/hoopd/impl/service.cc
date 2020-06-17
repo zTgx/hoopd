@@ -10,6 +10,7 @@
 #include <stdlib.h>
 
 #define MAX_EVENTS 1024
+#define HOOPD_RECV_BUFSIZ size_t(4096u)
 
 namespace hoopd {
 void Service::set_settings(const Settings& settings) {
@@ -93,8 +94,11 @@ bool Service::run() {
             } else {
                 // do_use_fd(events[n].data.fd);
                 int fd  = events[n].data.fd;
-                char buffer[30000] = {0};
-                long valread = read( fd , buffer, 30000);
+                char buffer[HOOPD_RECV_BUFSIZ] = {0};
+                long valread = read(fd, buffer, HOOPD_RECV_BUFSIZ);
+                (void)valread;
+                // size_t nbytes = recv(fd, buffer, HOOPD_RECV_BUFSIZ,MSG_WAITALL);
+
                 std::cout << "read buffer : " << buffer << std::endl;
 
                 size_t n = write(fd , hello , strlen(hello));

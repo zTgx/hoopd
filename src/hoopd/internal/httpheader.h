@@ -3,6 +3,7 @@
 
 #include <unordered_map>
 
+
 namespace hoopd {
 enum class Method {
     GET,
