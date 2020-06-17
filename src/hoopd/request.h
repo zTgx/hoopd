@@ -15,6 +15,7 @@ public:
 
 public:
     Method method;
+    Headers headers;
     
 public:
     // Copy Constructor

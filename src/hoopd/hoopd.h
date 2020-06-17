@@ -1,4 +1,6 @@
 #include <functional> //std::function
+#include <regex> // std::regex
+
 #include <hoopd/internal/nocopyable.h>
 #include <hoopd/settings.h>
 #include <hoopd/service.h>
@@ -17,10 +19,15 @@ public:
 
 public:
     typedef std::function<void(const Request&, Response&)> Handler;
+    typedef std::vector<std::pair<std::regex, Handler>> Routers;
+
+private:
+    std::string _scope;
+    Routers _gets;
 
 public:
-    void set_scope(const std::string&);
-    void get(const std::string&, Handler);
+    HttpServer& set_scope(const std::string&);
+    HttpServer& get(const std::string&, Handler);
 
 private:
     Settings _settings;
