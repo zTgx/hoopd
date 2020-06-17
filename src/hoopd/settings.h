@@ -5,7 +5,7 @@
 
 namespace hoopd {
 struct Settings {
-    std::string host = "localhost";
+    std::string host = "127.0.0.1";
     size_t      port = 9527;
 };
 }
