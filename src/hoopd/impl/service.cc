@@ -105,14 +105,15 @@ void Service::handle_request(int fd) {
     const char *hello = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 12\n\nHello hoopd!";
 
     char buffer[HOOPD_RECV_BUFSIZ] = {0};
-    long valread = read(fd, buffer, HOOPD_RECV_BUFSIZ);
+    // long valread = read(fd, buffer, HOOPD_RECV_BUFSIZ);
+    long valread = recv(fd, buffer, HOOPD_RECV_BUFSIZ, 0);
     (void)valread;
     // size_t nbytes = recv(fd, buffer, HOOPD_RECV_BUFSIZ,MSG_WAITALL);
 
     // std::cout << "read buffer : " << buffer << std::endl;
 
     // parse HTTP
-    parse_http_header(buffer);
+    parse_http_header(buffer, valread);
 
     size_t n = write(fd , hello , strlen(hello));
     (void)n;
