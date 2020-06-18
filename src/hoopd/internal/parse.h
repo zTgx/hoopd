@@ -1,9 +1,27 @@
 #include <iostream>
-#include <hoopd/internal/http_parser.h>
+#include <hoopd/3rd/httpparser/http_parser.h>
 #include <cassert>
+#include <hoopd/3rd/json.hpp>
+
+// for convenience
+using json = nlohmann::json;
+
+namespace ns {
+    struct Body {
+        std::string image_path;
+    };
+
+    void to_json(json& j, const Body& p) {
+        j = json{{"image_path", p.image_path}};
+    }
+
+    void from_json(const json& j, Body& p) {
+        j.at("image_path").get_to(p.image_path);
+    }
+} // namespace ns
 
 namespace hoopd {
-    
+
     static int on_message_begin(http_parser *p) {
         std::cout << "########### on_message_begin ################" << std::endl;
         return 0;
@@ -25,8 +43,14 @@ namespace hoopd {
     }
 
     static int on_body(http_parser* p, const char *at, size_t length) {
-        std::string body(at);
-        std::cout << "##### on_body: " << body.substr(0, length) << std::endl;
+        std::string payload(at);
+        std::string body = payload.substr(0, length);
+        std::cout << "##### on_body: " << body << std::endl;
+
+        json j = json::parse(body);
+        auto p2 = j.get<ns::Body>();
+
+        std::cout << "image path: " << p2.image_path << std::endl;
         return 0;
     }
 

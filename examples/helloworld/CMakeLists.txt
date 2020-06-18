@@ -1,3 +1,5 @@
+PROJECT(helloworld)
+
 # set c++11 standard
 SET(CMAKE_CXX_STANDARD 11)
 
