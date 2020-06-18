@@ -1,7 +1,7 @@
 #include <iostream>
 #include <hoopd/3rd/httpparser/http_parser.h>
 #include <cassert>
-#include <hoopd/3rd/json.hpp>
+#include <hoopd/3rd/json/json.hpp>
 
 // for convenience
 using json = nlohmann::json;
