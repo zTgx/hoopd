@@ -10,6 +10,9 @@ public:
     bool run();
 
 private:
+    void handle_request(int);
+    
+private:
     Settings _settings;
 };
 }

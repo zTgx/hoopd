@@ -2,12 +2,14 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>	//inet_addr
 
-#include <hoopd/internal/service.h>
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+
+#include <hoopd/internal/service.h>
+#include <hoopd/internal/parse.h>
 
 #define MAX_EVENTS 1024
 #define HOOPD_RECV_BUFSIZ size_t(4096u)
@@ -21,8 +23,6 @@ bool Service::run() {
     struct epoll_event ev, events[MAX_EVENTS];
     int listen_sock, conn_sock, nfds, epollfd;
     struct sockaddr_in address;    
-
-    const char *hello = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 12\n\nHello hoopd!";
     
     // Creating socket file descriptor
     if ((listen_sock = socket(AF_INET, SOCK_STREAM, 0)) == 0)
@@ -92,24 +92,32 @@ bool Service::run() {
                     exit(EXIT_FAILURE);
                 }
             } else {
-                // do_use_fd(events[n].data.fd);
                 int fd  = events[n].data.fd;
-                char buffer[HOOPD_RECV_BUFSIZ] = {0};
-                long valread = read(fd, buffer, HOOPD_RECV_BUFSIZ);
-                (void)valread;
-                // size_t nbytes = recv(fd, buffer, HOOPD_RECV_BUFSIZ,MSG_WAITALL);
-
-                std::cout << "read buffer : " << buffer << std::endl;
-
-                size_t n = write(fd , hello , strlen(hello));
-                (void)n;
-                std::cout << "------------------Hello message sent-------------------" << std::endl;
-                close(fd);
+                handle_request(fd);
             }
         }
     }
 
     return 0;
+}
+
+void Service::handle_request(int fd) {
+    const char *hello = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 12\n\nHello hoopd!";
+
+    char buffer[HOOPD_RECV_BUFSIZ] = {0};
+    long valread = read(fd, buffer, HOOPD_RECV_BUFSIZ);
+    (void)valread;
+    // size_t nbytes = recv(fd, buffer, HOOPD_RECV_BUFSIZ,MSG_WAITALL);
+
+    // std::cout << "read buffer : " << buffer << std::endl;
+
+    // parse HTTP
+    parse_http_header(buffer);
+
+    size_t n = write(fd , hello , strlen(hello));
+    (void)n;
+    std::cout << "------------------Hello message sent-------------------" << std::endl;
+    close(fd);
 }
 
 }
