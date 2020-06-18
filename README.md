@@ -1,9 +1,9 @@
 # [hoopd](https://github.com/zTgx/hoopd)
-hoopd will be a simple and easy to use restful server written in C++11.
+hoopd will be a simple and easy to use restful server written in C++11.   
+
 ---
 ## How To Use
 ```c++
-#include <iostream>
 #include <hoopd/hoopd.h>
 
 using namespace hoopd;
