@@ -10,7 +10,7 @@ using namespace hoopd;
 
 int main() {
     HttpServer server;
-    server.set_scope("api/v2");
+    server.set_scope("/api/v2");
 
     server.get("/server-info", [](const Request& req, Response& res) {
         // ...
