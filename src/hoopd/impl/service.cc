@@ -15,6 +15,10 @@
 #define HOOPD_RECV_BUFSIZ size_t(4096u)
 
 namespace hoopd {
+void Service::set_handler(Handler& h) {
+    _handler = h;
+}
+
 void Service::set_settings(const Settings& settings) {
     _settings = settings;
 }
@@ -113,7 +117,7 @@ void Service::handle_request(int fd) {
     // std::cout << "read buffer : " << buffer << std::endl;
 
     // parse HTTP
-    parse_http_header(buffer, valread);
+    parse_http_header(buffer, valread, _handler);
 
     size_t n = write(fd , hello , strlen(hello));
     (void)n;

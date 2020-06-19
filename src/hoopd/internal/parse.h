@@ -79,7 +79,7 @@ namespace hoopd {
         // .on_message_complete    = on_info,        
     };
 
-    void parse_http_header(const char* buffer, long data_len) {
+    void parse_http_header(const char* buffer, long data_len, Handler& h) {
         struct http_parser parser;
 
         size_t parsed;
@@ -91,10 +91,11 @@ namespace hoopd {
         std::string method{http_method_str((enum http_method)parser.method)};
         std::cout << "method: " << method << std::endl;
 
-        std::string pattern{"server-info"};
+        std::string pattern{"/server-info"};
 
         if(method == "GET") {
-            handler::handle_gets(pattern);
+            // handler::handle_gets(pattern);
+            h.handle(pattern);
         }
     }
 

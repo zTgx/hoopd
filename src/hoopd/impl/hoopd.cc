@@ -19,6 +19,7 @@ bool HttpServer::run() {
     // bind
 
     // run
+    _service.set_handler(_handler);
     _service.set_settings(_settings);
     _service.run();
 
@@ -31,27 +32,15 @@ HttpServer& HttpServer::set_scope(const std::string& scope) {
     return *this;
 }
 
-HttpServer& HttpServer::get(const std::string& pattern, Handler h) {
-    _gets.push_back(std::make_pair(std::regex(pattern), h));
+HttpServer& HttpServer::get(const std::string& pattern, Handler::Action h) {
+    // _gets.push_back(std::make_pair(std::regex(pattern), h));
+    _handler.push_back(pattern, h);
     return *this;
 
     // true if rgx is matched against the target sequence. false otherwise.
     // std::string s ("/api/get");
     // std::regex e ("/api/");
     // std::cout << std::regex_match (s,e) << std::endl;
-}
-
-void HttpServer::handle_gets(const std::string& pattern) {
-    for(auto x:_gets) {
-        std::regex reg = x.first;
-        if(std::regex_match(pattern, reg)) {
-            Handler h = x.second;
-
-            Request req;
-            Response res;
-            h(req, res);
-        }
-    }
 }
 
 } // namespace hoopd
