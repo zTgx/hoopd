@@ -8,14 +8,6 @@
 #include <regex> // std::regex
 
 namespace hoopd {
-    // namespace handler {
-    //     void handle_gets(std::string& pattern) {
-    //         std::cout << "pattern : " << pattern << std::endl;
-
-
-    //     }
-    // }
-
 class Handler {    
 public:
     typedef std::function<void(const Request&, Response&)> Action;

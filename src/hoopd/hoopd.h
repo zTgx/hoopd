@@ -14,13 +14,8 @@ public:
 public:
     virtual bool run();
 
-// public:
-//     typedef std::function<void(const Request&, Response&)> Handler;
-//     typedef std::vector<std::pair<std::regex, Handler>> Routers;
-
 private:
     std::string _scope;
-    // Routers _gets;
 
 public:
     HttpServer& set_scope(const std::string&);

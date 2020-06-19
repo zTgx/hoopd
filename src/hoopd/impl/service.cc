@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 #include <hoopd/internal/service.h>
-#include <hoopd/internal/parse.h>
+#include <hoopd/internal/parser.h>
 
 #define MAX_EVENTS 1024
 #define HOOPD_RECV_BUFSIZ size_t(4096u)
@@ -117,7 +117,9 @@ void Service::handle_request(int fd) {
     // std::cout << "read buffer : " << buffer << std::endl;
 
     // parse HTTP
-    parse_http_header(buffer, valread, _handler);
+    // parse_http_header(buffer, valread, _handler);
+    parser::HttpParser parser;
+    parser.parse(buffer, valread, _handler);
 
     size_t n = send(fd , hello , strlen(hello), 0);
     // size_t n = write(fd , hello , strlen(hello));
