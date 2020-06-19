@@ -119,7 +119,8 @@ void Service::handle_request(int fd) {
     // parse HTTP
     parse_http_header(buffer, valread, _handler);
 
-    size_t n = write(fd , hello , strlen(hello));
+    size_t n = send(fd , hello , strlen(hello), 0);
+    // size_t n = write(fd , hello , strlen(hello));
     (void)n;
     std::cout << "------------------Hello message sent-------------------" << std::endl;
     close(fd);
