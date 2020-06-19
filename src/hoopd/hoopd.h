@@ -29,6 +29,8 @@ public:
     HttpServer& set_scope(const std::string&);
     HttpServer& get(const std::string&, Handler);
 
+    void handle_gets(const std::string&);
+
 private:
     Settings _settings;
     Service _service;

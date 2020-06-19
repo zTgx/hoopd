@@ -2,6 +2,7 @@
 #include <hoopd/3rd/httpparser/http_parser.h>
 #include <cassert>
 #include <hoopd/3rd/json/json.hpp>
+#include <hoopd/internal/handler.h>
 
 // for convenience
 using json = nlohmann::json;
@@ -87,7 +88,14 @@ namespace hoopd {
         parsed = http_parser_execute(&parser, &settings, buffer, data_len);
         std::cout << "parsed: " << parsed << std::endl;
 
-        std::cout << "method: " << http_method_str((enum http_method)parser.method) << std::endl;
+        std::string method{http_method_str((enum http_method)parser.method)};
+        std::cout << "method: " << method << std::endl;
+
+        std::string pattern{"server-info"};
+
+        if(method == "GET") {
+            handler::handle_gets(pattern);
+        }
     }
 
 

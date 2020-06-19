@@ -41,4 +41,17 @@ HttpServer& HttpServer::get(const std::string& pattern, Handler h) {
     // std::cout << std::regex_match (s,e) << std::endl;
 }
 
+void HttpServer::handle_gets(const std::string& pattern) {
+    for(auto x:_gets) {
+        std::regex reg = x.first;
+        if(std::regex_match(pattern, reg)) {
+            Handler h = x.second;
+
+            Request req;
+            Response res;
+            h(req, res);
+        }
+    }
+}
+
 } // namespace hoopd
