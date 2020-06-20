@@ -15,23 +15,17 @@ void Message::on_message_begin() {
     body.clear();
 }
 void Message::description() {
-    json field_and_value;
+    json headers;
     for(auto i=0;i<fields.size();i++) {
         std::cout << fields[i] << ":" << values[i] << std::endl;
-        field_and_value.emplace(fields[i], values[i]);
+        headers.emplace(fields[i], values[i]);
     }
     std::cout << std::endl;
 
-    field_and_value.emplace("method", method);
-    std::cout << "method: " << method << std::endl;
-
-    field_and_value.emplace("url", url);
-    std::cout << "url: " << url << std::endl;
-
-    field_and_value.emplace("body", body);
-    std::cout << "json: " << body.dump() << std::endl;
-
-    data = field_and_value;
+    data.emplace("header", headers);
+    data.emplace("method", method);
+    data.emplace("url", url);
+    data.emplace("body", body);
 }
 json HttpParser::parse(const char* buffer, long data_len, Handler& h) {
     http_parser_settings settings = {

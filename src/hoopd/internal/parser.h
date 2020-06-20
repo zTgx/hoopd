@@ -31,6 +31,7 @@ struct Message {
     std::vector<std::string> fields;
     std::vector<std::string> values;
     std::string url;
+    json header;
     json body;
     std::string method;
 
