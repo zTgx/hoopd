@@ -118,7 +118,7 @@ void Service::handle_request(int fd) {
 
     // parse HTTP
     // parse_http_header(buffer, valread, _handler);
-    parser::HttpParser parser;
+    http::HttpParser parser;
     parser.parse(buffer, valread, _handler);
 
     size_t n = send(fd , hello , strlen(hello), 0);

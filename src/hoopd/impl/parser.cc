@@ -12,7 +12,7 @@ using json = nlohmann::json;
 // }
 
 namespace hoopd {
-namespace parser {
+namespace http {
 void HttpParser::parse(const char* buffer, long data_len, Handler& h) {
     http_parser_settings settings = {
         .on_message_begin       = on_message_begin,
