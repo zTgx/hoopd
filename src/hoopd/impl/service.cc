@@ -119,7 +119,8 @@ void Service::handle_request(int fd) {
     // parse HTTP
     // parse_http_header(buffer, valread, _handler);
     http::HttpParser parser;
-    parser.parse(buffer, valread, _handler);
+    json data = parser.parse(buffer, valread, _handler);
+    std::cout << "data : " << data.dump() << std::endl;
 
     size_t n = send(fd , hello , strlen(hello), 0);
     // size_t n = write(fd , hello , strlen(hello));
