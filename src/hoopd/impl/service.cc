@@ -109,23 +109,17 @@ void Service::handle_request(int fd) {
     char buffer[HOOPD_RECV_BUFSIZ] = {0};
     long valread = recv(fd, buffer, HOOPD_RECV_BUFSIZ, 0);
     (void)valread;
-    // size_t nbytes = recv(fd, buffer, HOOPD_RECV_BUFSIZ,MSG_WAITALL);
 
     http::HttpParser parser;
     json data = parser.parse(buffer, valread);
     std::cout << "data: " << data.dump().size() << std::endl;
 
-    std::string pattern{"/server-info"};
-    if(true) {
-        _handler.handle(pattern);
-    }
+    _handler.handle(std::string{data["url"]});
 
     const char *res_header = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 289\n\n";
     std::string res_body = data.dump();
 
     std::string res = res_header + res_body;
-
-    std::cout << "res: \n" << res << std::endl;
 
     size_t n = send(fd, res.data(), res.size(), 0);
     std::cout << "send " << n << " bytes" << std::endl;

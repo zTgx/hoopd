@@ -33,14 +33,8 @@ HttpServer& HttpServer::set_scope(const std::string& scope) {
 }
 
 HttpServer& HttpServer::get(const std::string& pattern, Handler::Action h) {
-    // _gets.push_back(std::make_pair(std::regex(pattern), h));
-    _handler.push_back(pattern, h);
+    _handler.push_back(_scope + pattern, h);
     return *this;
-
-    // true if rgx is matched against the target sequence. false otherwise.
-    // std::string s ("/api/get");
-    // std::regex e ("/api/");
-    // std::cout << std::regex_match (s,e) << std::endl;
 }
 
 } // namespace hoopd
