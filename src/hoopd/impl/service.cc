@@ -116,7 +116,7 @@ void Service::handle_request(int fd) {
 
     _handler.handle(std::string{data["url"]});
 
-    const char *res_header = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 289\n\n";
+    const char *res_header = "HTTP/1.1 200 OK\nContent-Type: application/json\nContent-Length: 289\n\n";
     std::string res_body = data.dump();
 
     std::string res = res_header + res_body;
