@@ -106,25 +106,30 @@ bool Service::run() {
 }
 
 void Service::handle_request(int fd) {
-    const char *hello = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 12\n\nHello hoopd!";
-
     char buffer[HOOPD_RECV_BUFSIZ] = {0};
-    // long valread = read(fd, buffer, HOOPD_RECV_BUFSIZ);
     long valread = recv(fd, buffer, HOOPD_RECV_BUFSIZ, 0);
     (void)valread;
     // size_t nbytes = recv(fd, buffer, HOOPD_RECV_BUFSIZ,MSG_WAITALL);
 
-    // std::cout << "read buffer : " << buffer << std::endl;
-
-    // parse HTTP
-    // parse_http_header(buffer, valread, _handler);
     http::HttpParser parser;
-    json data = parser.parse(buffer, valread, _handler);
-    std::cout << "data : " << data.dump() << std::endl;
+    json data = parser.parse(buffer, valread);
+    std::cout << "data: " << data.dump().size() << std::endl;
 
-    size_t n = send(fd , hello , strlen(hello), 0);
-    // size_t n = write(fd , hello , strlen(hello));
-    (void)n;
+    std::string pattern{"/server-info"};
+    if(true) {
+        _handler.handle(pattern);
+    }
+
+    const char *res_header = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 289\n\n";
+    std::string res_body = data.dump();
+
+    std::string res = res_header + res_body;
+
+    std::cout << "res: \n" << res << std::endl;
+
+    size_t n = send(fd, res.data(), res.size(), 0);
+    std::cout << "send " << n << " bytes" << std::endl;
+
     std::cout << "------------------Hello message sent-------------------" << std::endl;
     close(fd);
 }

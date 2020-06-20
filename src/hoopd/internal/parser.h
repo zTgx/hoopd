@@ -4,7 +4,6 @@
 #include <iostream>
 #include <hoopd/3rd/httpparser/http_parser.h>
 #include <hoopd/internal/nocopyable.h>
-#include <hoopd/internal/handler.h>
 
 #include <hoopd/3rd/json/json.hpp>
 
@@ -43,7 +42,7 @@ struct Message {
 
 class HttpParser : public noncopyable {
 public:
-    json parse(const char*, long, Handler&);
+    json parse(const char*, long);
 };
 
 static int on_message_begin(http_parser *p);

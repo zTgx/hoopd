@@ -27,7 +27,7 @@ void Message::description() {
     data.emplace("url", url);
     data.emplace("body", body);
 }
-json HttpParser::parse(const char* buffer, long data_len, Handler& h) {
+json HttpParser::parse(const char* buffer, long data_len) {
     http_parser_settings settings = {
         .on_message_begin       = on_message_begin,
         .on_url                 = on_url,
@@ -45,12 +45,6 @@ json HttpParser::parse(const char* buffer, long data_len, Handler& h) {
 
     parsed = http_parser_execute(&parser, &settings, buffer, data_len);
     std::cout << "parsed: " << parsed << std::endl;
-
-    std::string pattern{"/server-info"};
-
-    if(true) {
-        h.handle(pattern);
-    }
 
     return message.data;
 }
