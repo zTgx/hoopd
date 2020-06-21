@@ -112,7 +112,7 @@ void Service::handle_request(int fd) {
 
     http::HttpParser parser;
     json data = parser.parse(buffer, valread);
-    std::cout << "data: " << data.dump().size() << std::endl;
+    std::cout << "data: " << data.dump() << " size: " << data.dump().size() << std::endl;
 
     _handler.handle(std::string{data["url"]});
 

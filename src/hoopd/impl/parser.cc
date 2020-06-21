@@ -13,6 +13,8 @@ void Message::on_message_begin() {
     url.clear();
 
     body.clear();
+
+    data.clear();
 }
 void Message::description() {
     json headers;
@@ -27,6 +29,7 @@ void Message::description() {
     data.emplace("url", url);
     data.emplace("body", body);
 }
+
 json HttpParser::parse(const char* buffer, long data_len) {
     http_parser_settings settings = {
         .on_message_begin       = on_message_begin,

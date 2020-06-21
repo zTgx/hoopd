@@ -16,5 +16,16 @@ int main() {
         res.description();
     });
 
+    class Echo {
+    public:
+        void echo() {
+            std::cout << "fixed echo." << std::endl;
+        }
+    };
+    server.get("/echo", [](const Request& req, Response& res) {
+        Echo e;
+        e.echo();
+    });
+
     server.run();
 }
