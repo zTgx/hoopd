@@ -16,7 +16,7 @@ void Message::on_message_begin() {
 
     data.clear();
 }
-void Message::description() {
+void Message::on_message_complete() {
     json headers;
     for(auto i=0;i<fields.size();i++) {
         std::cout << fields[i] << ":" << values[i] << std::endl;
@@ -110,7 +110,7 @@ static int on_body(http_parser* p, const char *at, size_t length) {
     return 0;
 }
 static int on_message_complete(http_parser *p) {
-    message.description();
+    message.on_message_complete();
     return 0;
 }
 }

@@ -37,7 +37,7 @@ struct Message {
     json data;
 
     void on_message_begin();
-    void description();
+    void on_message_complete();
 };
 
 class HttpParser : public noncopyable {
