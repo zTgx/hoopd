@@ -16,17 +16,12 @@ HttpServer::~HttpServer() {
 bool HttpServer::run() {
     std::cout << "hoopd is started running ... " << std::endl;
 
-    // bind
-
-    // run
     _service.set_handler(_handler);
     _service.set_settings(_settings);
-    _service.run();
-
-    return true;
+    
+    return _service.run();
 }
 
-// ---------------------------
 HttpServer& HttpServer::set_scope(const std::string& scope) {
     _scope = scope;
     return *this;
