@@ -1,4 +1,5 @@
 #include <hoopd/internal/parser.h>
+#include <hoopd/internal/http_header.h>
 
 namespace hoopd {
 namespace http {

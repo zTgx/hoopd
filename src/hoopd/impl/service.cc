@@ -120,6 +120,7 @@ void Service::handle_request(int fd) {
     json data = parser.parse(buffer, valread);
     std::cout << "data: " << data.dump() << " size: " << data.dump().size() << std::endl;
 
+
     _handler.handle(std::string{data["url"]});
 
     const char *res_header = "HTTP/1.1 200 OK\nContent-Type: application/json\nContent-Length: 289\n\n";
