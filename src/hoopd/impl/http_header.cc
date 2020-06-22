@@ -1,16 +1,11 @@
 #include <hoopd/internal/http_header.h>
 
 namespace hoopd {
-void HttpHeader::add_entity(const char *key, const char *val) {
+void HttpHeader::add_entity(const std::string& key, const std::string &val) {
     _headers.emplace(key, val);
 }
 
-void HttpHeader::add_entity(const char *key, const std::string &val) {
-    _headers.emplace(key, val);
+HttpHeader::Headers HttpHeader::get_headers() const {
+    return _headers;
 }
-
-std::string HttpHeader::get_header_value(const char *key) const {
-    return _headers.at(key);
-}
-
 }

@@ -14,21 +14,19 @@ void Message::on_message_begin() {
     url.clear();
 
     body.clear();
-
-    data.clear();
 }
 void Message::on_message_complete() {
-    json headers;
-    for(auto i=0;i<fields.size();i++) {
-        std::cout << fields[i] << ":" << values[i] << std::endl;
-        headers.emplace(fields[i], values[i]);
-    }
-    std::cout << std::endl;
+    // json headers;
+    // for(auto i=0;i<fields.size();i++) {
+    //     std::cout << fields[i] << ":" << values[i] << std::endl;
+    //     headers.emplace(fields[i], values[i]);
+    // }
+    // std::cout << std::endl;
 
-    data.emplace("header", headers);
-    data.emplace("method", method);
-    data.emplace("url", url);
-    data.emplace("body", body);
+    // data.emplace("header", headers);
+    // data.emplace("method", method);
+    // data.emplace("url", url);
+    // data.emplace("body", body);
 }
 
 Message HttpParser::parse(const char* buffer, long data_len) {
@@ -104,12 +102,12 @@ static int on_headers_complete(http_parser *p) {
 static int on_body(http_parser* p, const char *at, size_t length) {
     std::string payload(at);
     std::string body = payload.substr(0, length);
-    std::cout << "##### on_body: " << body << std::endl;
+    // std::cout << "##### on_body: " << body << std::endl;
 
-    json j = json::parse(body);
-    std::cout << "image path : " << j["image_path"] << std::endl;
+    // json j = json::parse(body);
+    // std::cout << "image path : " << j["image_path"] << std::endl;
 
-    message.body = j;
+    message.body = body;
 
     // auto p2 = j.get<ns::Body>();
     // std::cout << "image path: " << p2.image_path << std::endl;

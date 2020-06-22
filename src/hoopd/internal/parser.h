@@ -31,10 +31,9 @@ struct Message {
     std::vector<std::string> values;
     std::string url;
     json header;
-    json body;
+    std::string body;
     std::string method;
     std::string version;
-    json data;
 
     void on_message_begin();
     void on_message_complete();

@@ -25,6 +25,8 @@ int main() {
     server.get("/echo", [](const Request& req, Response& res) {
         Echo e;
         e.echo();
+
+        req.description();
     });
 
     server.run();

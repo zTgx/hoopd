@@ -26,10 +26,9 @@ public:
     typedef std::unordered_map<std::string, std::string> Headers;
 
 public:
-    void add_entity(const char *key, const char *val);
-    void add_entity(const char *key, const std::string &val);
+    void add_entity(const std::string& key, const std::string &val);
 
-    std::string get_header_value(const char *key) const;
+    Headers get_headers() const;
 
 private:
     Headers _headers;
