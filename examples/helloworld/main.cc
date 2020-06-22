@@ -26,7 +26,8 @@ int main() {
         Echo e;
         e.echo();
 
-        req.description();
+        std::string body{"hhhhhhhhhhhhhhhhooooooooooooooooopppppppppppppppdddddddddddddddddd"};
+        res.set_body(body);
     });
 
     server.run();
