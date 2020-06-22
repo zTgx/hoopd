@@ -30,6 +30,9 @@ public:
 
     Headers get_headers() const;
 
+public:
+    std::string data() const;
+
 private:
     Headers _headers;
 };

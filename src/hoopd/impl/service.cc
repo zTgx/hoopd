@@ -118,7 +118,6 @@ void Service::handle_request(int fd) {
 
     http::HttpParser parser;
     http::Message message = parser.parse(buffer, valread);
-    // std::cout << "data: " << data.dump() << " size: " << data.dump().size() << std::endl;
 
     Request req{message};
     Response res{};
@@ -126,14 +125,18 @@ void Service::handle_request(int fd) {
     Handler::Action h = _handler.fetch_handle(message.url);
     h(req, res);
 
-    const char *res_header = "HTTP/1.1 200 OK\nContent-Type: application/json\nContent-Length: 289\n\n";
-    // std::string res_body = data.dump();
+    // const char *res_header = "HTTP/1.1 200 OK\nContent-Type: application/json\nContent-Length: 289\n\n";
+    
+    // Response setting
+    const char* http_status = "HTTP/1.1 200 OK\n";
+    send(fd, http_status, strlen(http_status), 0);
+    
+    std::string header = res.get_header().data();
 
-    size_t n = send(fd, res_header, strlen(res_header), 0);
+    send(fd, header.data(), header.size(), 0);
+    send(fd, "\n\n", strlen("\n\n"), 0);
     send(fd, res.get_body().data(), res.get_body().size(), 0);
     send(fd, "\r\n", strlen("\r\n"), 0);
-    // size_t n = send(fd, res.data(), res.size(), 0);
-    std::cout << "send " << n << " bytes" << std::endl;
 
     std::cout << "------------------Hello message sent-------------------" << std::endl;
     close(fd);
