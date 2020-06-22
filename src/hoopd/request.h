@@ -15,7 +15,7 @@ public:
     const void description() const;
 
 public:
-    std::string version;
+    HttpVersion version;
     Method      method;
     std::string target;
     std::string path;

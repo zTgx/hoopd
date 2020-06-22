@@ -13,6 +13,14 @@ HttpServer::HttpServer(const Settings& settings) : noncopyable() {
 HttpServer::~HttpServer() {
 }
 
+bool HttpServer::is_running() const {
+    return true;
+}
+
+bool HttpServer::stop() {
+    return true;
+}
+
 bool HttpServer::run() {
     std::cout << "hoopd is started running ... " << std::endl;
 

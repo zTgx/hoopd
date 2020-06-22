@@ -17,6 +17,12 @@ enum class Method {
     UPDATE,
 };
 
+enum class HttpVersion {
+    v1_0 = 0, 
+    v1_1,
+    V2_0 
+};
+
 typedef std::unordered_map<std::string, std::string> Headers;
 
 // void to_json(json& j, const Request& p) {
