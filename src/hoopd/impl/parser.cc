@@ -31,7 +31,7 @@ void Message::on_message_complete() {
     data.emplace("body", body);
 }
 
-json HttpParser::parse(const char* buffer, long data_len) {
+Message HttpParser::parse(const char* buffer, long data_len) {
     http_parser_settings settings = {
         .on_message_begin       = on_message_begin,
         .on_url                 = on_url,
@@ -50,7 +50,9 @@ json HttpParser::parse(const char* buffer, long data_len) {
     parsed = http_parser_execute(&parser, &settings, buffer, data_len);
     std::cout << "parsed: " << parsed << std::endl;
 
-    return message.data;
+    // return message.data;
+
+    return message;
 }
 static int on_message_begin(http_parser *p) {
     std::cout << "########### on_message_begin ################" << std::endl;
@@ -92,6 +94,9 @@ static int on_header_value(http_parser* p, const char *at, size_t length) {
 static int on_headers_complete(http_parser *p) {
     std::string method{http_method_str((enum http_method)p->method)};
 
+    std::cout << "http_version: " << p->http_major << "_" << p->http_minor << std::endl;
+
+    message.version = std::to_string(p->http_major) + std::to_string(p->http_minor);
     message.method = method;
 
     return 0;

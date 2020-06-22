@@ -117,18 +117,20 @@ void Service::handle_request(int fd) {
     (void)valread;
 
     http::HttpParser parser;
-    json data = parser.parse(buffer, valread);
-    std::cout << "data: " << data.dump() << " size: " << data.dump().size() << std::endl;
+    http::Message message = parser.parse(buffer, valread);
+    // std::cout << "data: " << data.dump() << " size: " << data.dump().size() << std::endl;
 
+    Request req{message};
+    Response res{};
 
-    _handler.handle(std::string{data["url"]});
+    Handler::Action h = _handler.fetch_handle(message.url);
+    h(req, res);
 
     const char *res_header = "HTTP/1.1 200 OK\nContent-Type: application/json\nContent-Length: 289\n\n";
-    std::string res_body = data.dump();
+    // std::string res_body = data.dump();
 
-    std::string res = res_header + res_body;
-
-    size_t n = send(fd, res.data(), res.size(), 0);
+    size_t n = send(fd, res_header, strlen(res_header), 0);
+    // size_t n = send(fd, res.data(), res.size(), 0);
     std::cout << "send " << n << " bytes" << std::endl;
 
     std::cout << "------------------Hello message sent-------------------" << std::endl;

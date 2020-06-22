@@ -5,6 +5,9 @@ namespace hoopd {
 Request::Request() {
 
 }
+Request::Request(const http::Message& message) {
+    
+}
 
 Request::~Request() {
 

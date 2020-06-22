@@ -4,12 +4,14 @@
 #include <hoopd/internal/descriptable.h>
 #include <hoopd/internal/http_header.h>
 #include <hoopd/internal/nocopyable.h>
+#include <hoopd/internal/parser.h>
 
 namespace hoopd {
 class Request : public Descriptable, 
                 public noncopyable {
 public:
-    Request();
+    explicit Request();
+    explicit Request(const http::Message&);
     virtual ~Request();
     
 public:
@@ -22,7 +24,7 @@ public:
     std::string path;
     HttpHeader  _http_header;
     std::string body;
-    
+
 public:
     bool reset();
 };

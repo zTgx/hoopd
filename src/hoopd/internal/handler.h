@@ -14,7 +14,7 @@ public:
     typedef std::vector<std::pair<std::regex, Action>> Routers;
 
 public:
-    void handle(const std::string&);
+    Action fetch_handle(const std::string&);
     void push_back(const std::string&, Action);
 
 private:

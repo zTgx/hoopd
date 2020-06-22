@@ -33,7 +33,7 @@ struct Message {
     json header;
     json body;
     std::string method;
-
+    std::string version;
     json data;
 
     void on_message_begin();
@@ -42,7 +42,7 @@ struct Message {
 
 class HttpParser : public noncopyable {
 public:
-    json parse(const char*, long);
+    Message parse(const char*, long);
 };
 
 static int on_message_begin(http_parser *p);
