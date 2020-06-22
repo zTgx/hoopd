@@ -15,9 +15,18 @@ public:
     const void description() const;
 
 public:
-    Method method;
-    Headers headers;
+    std::string version;
+    Method      method;
+    std::string target;
+    std::string path;
+    Headers     headers;
+    std::string body;
     
+public:
+    void set_header(const char *key, const char *val);
+    void set_header(const char *key, const std::string &val);
+    std::string get_header_value(const char *key) const;
+
 public:
     bool reset();
 };

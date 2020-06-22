@@ -13,7 +13,8 @@ public:
 
 private:
     void handle_request(int);
-    
+    void set_nonblocking(int, bool);
+
 private:
     Settings _settings;
     Handler _handler;

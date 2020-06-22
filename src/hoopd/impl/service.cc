@@ -1,6 +1,7 @@
 #include <sys/epoll.h>
-#include <sys/socket.h>
 #include <arpa/inet.h>	//inet_addr
+#include <sys/socket.h>
+#include <fcntl.h>
 
 #include <iostream>
 #include <string.h>
@@ -87,7 +88,7 @@ bool Service::run() {
                     exit(EXIT_FAILURE);
                 }
 
-                // setnonblocking(conn_sock);
+                set_nonblocking(conn_sock, true);
 
                 ev.events = EPOLLIN | EPOLLET;
                 ev.data.fd = conn_sock;
@@ -103,6 +104,11 @@ bool Service::run() {
     }
 
     return 0;
+}
+
+void Service::set_nonblocking(int sock, bool nonblocking) {
+    auto flags = fcntl(sock, F_GETFL, 0);
+    fcntl(sock, F_SETFL, nonblocking ? (flags | O_NONBLOCK) : (flags & (~O_NONBLOCK)));
 }
 
 void Service::handle_request(int fd) {

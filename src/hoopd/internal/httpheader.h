@@ -3,6 +3,10 @@
 
 #include <unordered_map>
 
+#include <hoopd/3rd/json/json.hpp>
+
+// for convenience
+using json = nlohmann::json;
 
 namespace hoopd {
 enum class Method {
@@ -15,6 +19,14 @@ enum class Method {
 
 typedef std::unordered_map<std::string, std::string> Headers;
 
+// void to_json(json& j, const Request& p) {
+//     j = json{{"image_path", p.image_path}};
+// }
+
+// void from_json(const json& j, Request& p) {
+//     j.at("image_path").get_to(p.image_path);
+// }
+ 
 }
 
 #endif
