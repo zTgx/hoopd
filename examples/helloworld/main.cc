@@ -27,6 +27,10 @@ int main() {
     server.get("/echo", [](const Request& req, Response& res) {
         Echo e;
         std::string message = e.echo();
+
+        std::string k{"Cache-control"};
+        std::string v{"no-cache"};
+        res.set_header(k, v);
         res.set_body(message);
     });
 
