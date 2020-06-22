@@ -2,29 +2,41 @@
 hoopd will be a simple and easy to use restful server written in C++11.   
 
 ---
-## How To Use
+## Basic Usage
+* Server
 ```c++
 #include <hoopd/hoopd.h>
 
 using namespace hoopd;
 
+class Echo {
+public:
+    std::string echo() {
+        std::string body{"Hi there; my name is hoopd, Good to see you."};
+        return body;
+    }
+};
+
 int main() {
     HttpServer server;
     server.set_scope("/api/v2");
 
-    class Echo {
-    public:
-        void echo() {
-            std::cout << "fixed echo." << std::endl;
-        }
-    };
     server.get("/echo", [](const Request& req, Response& res) {
         Echo e;
-        e.echo();
+        std::string message = e.echo();
+        res.set_body(message);
     });
 
     server.run();
 }
+```
+* client
+```c
+curl http://127.0.0.1:9527/api/v2/echo
+```
+* output 
+```
+Hi there; my name is hoopd, Good to see you.
 ```
 ---  
 ## How to run helloworld
