@@ -39,20 +39,29 @@ curl http://127.0.0.1:9527/api/v2/echo
 Hi there; my name is hoopd, Good to see you.
 ```
 ---  
-## How to run helloworld
-#### Zero : clone source code
+## Run Examples
 ```shell
 git clone https://github.com/zTgx/hoopd.git
-```
-#### One: build hoopd library
-```shell
 mkdir build && cd build && cmake .. && make
-```
-#### Two: build helloworld
-```shell
 cd examples/helloworld && mkdir build && cd build && cmake .. && make 
-```
-#### Last: run helloworld binary
-```shell
 ./bin/helloworld
 ```
+----
+More Examples
+---------------
+More examples can be found [in the examples directory](examples/).  
+
+----
+NOTE
+----
+
+### Build Tools
+g++ 8.4  +   
+cmake 3.17 +
+
+----
+
+License
+-------
+
+MIT license (© 2020 zTgx)
