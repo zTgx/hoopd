@@ -3,6 +3,14 @@
 
 using namespace hoopd;
 
+class Echo {
+public:
+    std::string echo() {
+        std::string body{"Hi there; my name is hoopd, Good to see you."};
+        return body;
+    }
+};
+
 int main() {
     // hoopd::Settings defaultSettings;
     // hoopd::HttpServer server(defaultSettings);
@@ -16,18 +24,10 @@ int main() {
         res.description();
     });
 
-    class Echo {
-    public:
-        void echo() {
-            std::cout << "fixed echo." << std::endl;
-        }
-    };
     server.get("/echo", [](const Request& req, Response& res) {
         Echo e;
-        e.echo();
-
-        std::string body{"hhhhhhhhhhhhhhhhooooooooooooooooopppppppppppppppdddddddddddddddddd"};
-        res.set_body(body);
+        std::string message = e.echo();
+        res.set_body(message);
     });
 
     server.run();
