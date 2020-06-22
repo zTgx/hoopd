@@ -131,7 +131,7 @@ void Service::handle_request(int fd) {
 
     size_t n = send(fd, res_header, strlen(res_header), 0);
     send(fd, res.get_body().data(), res.get_body().size(), 0);
-
+    send(fd, "\r\n", strlen("\r\n"), 0);
     // size_t n = send(fd, res.data(), res.size(), 0);
     std::cout << "send " << n << " bytes" << std::endl;
 
