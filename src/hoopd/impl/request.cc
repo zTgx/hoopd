@@ -10,6 +10,9 @@ Request::Request(const http::Message& message) {
 
         _http_header.add_entity(field.c_str(), value);
     }
+
+    // body
+    body = message.body;
 }
 
 Request::~Request() {
