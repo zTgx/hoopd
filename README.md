@@ -1,7 +1,6 @@
-# [hoopd](https://github.com/zTgx/hoopd)
+# [hoopd](https://github.com/zTgx/hoopd) ![C/C++ CI](https://github.com/zTgx/hoopd/workflows/C/C++%20CI/badge.svg)
 hoopd will be a simple and easy to use restful server written in C++11.   
 
----
 ## Basic Usage
 * Server
 ```c++
@@ -43,12 +42,12 @@ curl http://127.0.0.1:9527/api/v2/echo
 ```
 Hi there; my name is hoopd, Good to see you.
 ```
----  
+  
 Examples
 ---------------
 More examples can be found [in the examples directory](examples/).  
 
-----
+
 NOTE
 ----
 
@@ -56,7 +55,6 @@ NOTE
 g++ 8.4  +   
 cmake 3.17 +
 
-----
 
 License
 -------
