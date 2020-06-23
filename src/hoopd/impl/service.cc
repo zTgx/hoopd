@@ -122,7 +122,7 @@ void Service::handle_request(int fd) {
     Request req{message};
     Response res{};
 
-    Handler::Action h = _handler.fetch_handle(message.url);
+    Handler::Action h = _handler.handle(message.url);
     h(req, res);
 
     // const char *res_header = "HTTP/1.1 200 OK\nContent-Type: application/json\nContent-Length: 289\n\n";

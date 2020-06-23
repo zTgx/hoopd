@@ -1,7 +1,7 @@
 #include <hoopd/internal/handler.h>
 
 namespace hoopd {
-Handler::Action Handler::fetch_handle(const std::string& pattern) {
+Handler::Action Handler::handle(const std::string& pattern) {
     std::cout << "handler pattern: " << pattern << std::endl;
     for(auto x : _gets) {
         std::regex reg = x.first;
