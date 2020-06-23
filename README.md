@@ -24,6 +24,11 @@ int main() {
     server.get("/echo", [](const Request& req, Response& res) {
         Echo e;
         std::string message = e.echo();
+
+        std::string k{"Cache-control"};
+        std::string v{"no-cache"};
+        res.set_header(k, v);
+
         res.set_body(message);
     });
 
@@ -39,15 +44,7 @@ curl http://127.0.0.1:9527/api/v2/echo
 Hi there; my name is hoopd, Good to see you.
 ```
 ---  
-## Run Examples
-```shell
-git clone https://github.com/zTgx/hoopd.git
-mkdir build && cd build && cmake .. && make
-cd examples/helloworld && mkdir build && cd build && cmake .. && make 
-./bin/helloworld
-```
-----
-More Examples
+Examples
 ---------------
 More examples can be found [in the examples directory](examples/).  
 
