@@ -11,6 +11,7 @@
 
 #include <hoopd/internal/service.h>
 #include <hoopd/internal/parser.h>
+#include <hoopd/internal/stream.h>
 
 #define MAX_EVENTS 1024
 #define HOOPD_RECV_BUFSIZ size_t(4096u)
@@ -123,20 +124,33 @@ void Service::handle_request(int fd) {
     Response res{};
 
     Handler::Action h = _handler.handle(message.url);
-    h(req, res);
+    h(req, res);    
 
-    // const char *res_header = "HTTP/1.1 200 OK\nContent-Type: application/json\nContent-Length: 289\n\n";
-    
-    // Response setting
+{
+    Stream s{fd};
+
     const char* http_status = "HTTP/1.1 200 OK\n";
-    send(fd, http_status, strlen(http_status), 0);
+    s << http_status;
     
     std::string header = res.get_header().data();
+    s << header;
+    s << "\n\n"; // \n\n indicates http header data is over.
+    s << res.get_body();
+    s << "\r\n";
 
-    send(fd, header.data(), header.size(), 0);
-    send(fd, "\n\n", strlen("\n\n"), 0);
-    send(fd, res.get_body().data(), res.get_body().size(), 0);
-    send(fd, "\r\n", strlen("\r\n"), 0);
+    s.send();
+}
+
+    // Response setting
+    // const char* http_status = "HTTP/1.1 200 OK\n";
+    // send(fd, http_status, strlen(http_status), 0);
+    
+    // std::string header = res.get_header().data();
+
+    // send(fd, header.data(), header.size(), 0);
+    // send(fd, "\n\n", strlen("\n\n"), 0);
+    // send(fd, res.get_body().data(), res.get_body().size(), 0);
+    // send(fd, "\r\n", strlen("\r\n"), 0);
 
     std::cout << "------------------Hello message sent-------------------" << std::endl;
     close(fd);
