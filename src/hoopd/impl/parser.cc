@@ -3,7 +3,7 @@
 
 namespace hoopd {
 namespace http {
-static Message message;
+// static Message message;
 
 void Message::on_message_begin() {
     std::cout << "on_message_begin..." << std::endl;
@@ -40,21 +40,23 @@ Message HttpParser::parse(const char* buffer, long data_len) {
         .on_body                = on_body,
         .on_message_complete    = on_message_complete,        
     };
-    struct http_parser parser;
+    // struct http_parser parser;
 
     size_t parsed;
     http_parser_init(&parser, HTTP_REQUEST);
 
+    parser.data = (void*)&message;
+
     parsed = http_parser_execute(&parser, &settings, buffer, data_len);
     std::cout << "parsed: " << parsed << std::endl;
-
-    // return message.data;
 
     return message;
 }
 static int on_message_begin(http_parser *p) {
     std::cout << "########### on_message_begin ################" << std::endl;
-    message.on_message_begin();
+    Message *message = (struct Message*)p->data;
+
+    message->on_message_begin();
     return 0;
 }
 static int on_url(http_parser* p, const char *at, size_t length) {
@@ -62,7 +64,11 @@ static int on_url(http_parser* p, const char *at, size_t length) {
     std::string pattern = url.substr(0, length);
     std::cout << "########## on_url: " << pattern << std::endl;
 
-    message.url = pattern;
+    Message *t = (struct Message*)p->data;
+    t->url = pattern;
+    std::cout << "---------------------------new url: " << t->url << std::endl;
+
+    // message.url = pattern;
 
     return 0;
 }
@@ -76,7 +82,8 @@ static int on_header_field(http_parser* p, const char *at, size_t length) {
     std::string field{v.substr(0, length)};
     std::cout << "###### on_header_field: " << field << std::endl;
 
-    message.fields.push_back(field);
+    Message *message = (struct Message*)p->data;
+    message->fields.push_back(field);
 
     return 0;
 }
@@ -85,7 +92,10 @@ static int on_header_value(http_parser* p, const char *at, size_t length) {
     std::string value{v.substr(0, length)};
     std::cout << "###### on_header_value: " << value << std::endl;
 
-    message.values.push_back(value);
+    // message.values.push_back(value);
+
+    Message *message = (struct Message*)p->data;
+    message->values.push_back(value);
 
     return 0;
 }
@@ -94,8 +104,12 @@ static int on_headers_complete(http_parser *p) {
 
     std::cout << "http_version: " << p->http_major << "_" << p->http_minor << std::endl;
 
-    message.version = std::to_string(p->http_major) + std::to_string(p->http_minor);
-    message.method = method;
+    // message.version = std::to_string(p->http_major) + std::to_string(p->http_minor);
+    // message.method = method;
+
+    Message *message = (struct Message*)p->data;
+    message->version = std::to_string(p->http_major) + std::to_string(p->http_minor);
+    message->method = method;
 
     return 0;
 }
@@ -107,14 +121,18 @@ static int on_body(http_parser* p, const char *at, size_t length) {
     // json j = json::parse(body);
     // std::cout << "image path : " << j["image_path"] << std::endl;
 
-    message.body = body;
+    Message *message = (struct Message*)p->data;
+    message->body = body;
 
     // auto p2 = j.get<ns::Body>();
     // std::cout << "image path: " << p2.image_path << std::endl;
     return 0;
 }
 static int on_message_complete(http_parser *p) {
-    message.on_message_complete();
+    // message.on_message_complete();
+
+    Message *message = (struct Message*)p->data;
+    message->on_message_complete();
     return 0;
 }
 }

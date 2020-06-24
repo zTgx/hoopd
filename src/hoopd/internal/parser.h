@@ -42,6 +42,10 @@ struct Message {
 class HttpParser : public noncopyable {
 public:
     Message parse(const char*, long);
+
+private:
+    struct http_parser parser;
+    Message message;
 };
 
 static int on_message_begin(http_parser *p);
