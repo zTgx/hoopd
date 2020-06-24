@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 #include <hoopd/internal/nocopyable.h>
 #include <hoopd/3rd/httpparser/http_parser.h>
 
@@ -15,11 +16,17 @@ struct Message {
     std::string body;
     std::string method;
     std::string version;
+    std::string query;
 };
+
+typedef std::unordered_map<std::string, std::string> Params;
 
 class HttpParser : public noncopyable {
 public:
     Message parse(const char*, long);
+
+private:
+    Params parse_params() const;
 
 private:
     Message message;

@@ -123,7 +123,11 @@ void Service::handle_request(int fd) {
     Response res{};
 
     Handler::Action h = _handler.handle(message.url);
-    h(req, res);    
+    if(h) {
+        h(req, res);    
+    } else {
+        std::cout << "handle errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" << std::endl;
+    }
 
     // Use Scope
     {

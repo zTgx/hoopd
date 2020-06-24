@@ -8,6 +8,8 @@ int main() {
     server.set_scope("/api/v2");
 
     server.get("/get-with-params", [](const Request& req, Response& res) {
+        req.description();
+        
         std::string message{"Hi there; my name is hoopd, Good to see you."};
 
         std::string k{"Cache-control"};
