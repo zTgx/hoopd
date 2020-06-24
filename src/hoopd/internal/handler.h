@@ -16,9 +16,11 @@ public:
 public:
     Action handle(const std::string&);
     void push_back(const std::string&, Action);
+    void push_error(Action h);
 
 private:
     Routers _gets;
+    Action _on_error;
 };
 } // namespace hoopd
 

@@ -22,7 +22,7 @@ bool HttpServer::stop() {
 }
 
 bool HttpServer::run() {
-    std::cout << "hoopd is started running ... " << std::endl;
+    std::cout << "hoopd is started running on " << _settings.host << ":" << _settings.port << std::endl;
 
     _service.set_handler(_handler);
     _service.set_settings(_settings);
@@ -40,4 +40,8 @@ HttpServer& HttpServer::get(const std::string& pattern, Handler::Action h) {
     return *this;
 }
 
+HttpServer& HttpServer::on_error(Handler::Action h) {
+    _handler.push_error(h);
+    return *this;
+}
 } // namespace hoopd
