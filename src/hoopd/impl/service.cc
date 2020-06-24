@@ -115,7 +115,6 @@ void Service::set_nonblocking(int sock, bool nonblocking) {
 void Service::handle_request(int fd) {
     char buffer[HOOPD_RECV_BUFSIZ] = {0};
     long valread = recv(fd, buffer, HOOPD_RECV_BUFSIZ, 0);
-    (void)valread;
 
     http::HttpParser parser;
     http::Message message = parser.parse(buffer, valread);
@@ -126,33 +125,23 @@ void Service::handle_request(int fd) {
     Handler::Action h = _handler.handle(message.url);
     h(req, res);    
 
-{
-    Stream s{fd};
+    // Use Scope
+    {
+        Stream s{fd};
 
-    const char* http_status = "HTTP/1.1 200 OK\n";
-    s << http_status;
-    
-    std::string header = res.get_header().data();
-    s << header;
-    s << "\n\n"; // \n\n indicates http header data is over.
-    s << res.get_body();
-    s << "\r\n";
+        const char* http_status = "HTTP/1.1 200 OK\n";
+        s << http_status;
+        
+        std::string header = res.get_header().data();
+        s << header;
+        s << "\n\n"; // \n\n indicates http header data is over.
 
-    s.send();
-}
+        s << res.get_body();
+        s << "\r\n";
 
-    // Response setting
-    // const char* http_status = "HTTP/1.1 200 OK\n";
-    // send(fd, http_status, strlen(http_status), 0);
-    
-    // std::string header = res.get_header().data();
+        s.send();
+    }
 
-    // send(fd, header.data(), header.size(), 0);
-    // send(fd, "\n\n", strlen("\n\n"), 0);
-    // send(fd, res.get_body().data(), res.get_body().size(), 0);
-    // send(fd, "\r\n", strlen("\r\n"), 0);
-
-    std::cout << "------------------Hello message sent-------------------" << std::endl;
     close(fd);
 }
 
