@@ -34,9 +34,13 @@ int main() {
     server.run();
 }
 ```
-* client
+* client: Use curl
 ```c
 curl http://127.0.0.1:9527/api/v2/echo
+```
+* client: Or Use python
+```c
+python client.py
 ```
 * output 
 ```
