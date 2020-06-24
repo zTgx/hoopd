@@ -9,7 +9,7 @@ int main() {
 
     server.set_scope("/api/v2");
 
-    server.get("/echo", [](const Request& req, Response& res) {
+    server.get("/echo", [](const Request& req, Response& res) {        
         std::string message = req.body;
 
         std::string k{"Cache-control"};
