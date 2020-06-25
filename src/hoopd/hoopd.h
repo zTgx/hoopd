@@ -1,5 +1,6 @@
-// internal headers
-// #include <hoopd/internal/nocopyable.h>
+#ifndef __HOOPD_H__
+#define __HOOPD_H__
+
 #include <hoopd/internal/service.h>
 #include <hoopd/internal/handler.h>
 
@@ -39,3 +40,5 @@ private:
     Handler _handler;
 };
 }
+
+#endif
