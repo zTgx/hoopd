@@ -20,8 +20,6 @@ int main() {
     });
 
     server.on_error([](const Request& req, Response& res) {
-        std::cout << "error handler..." << std::endl;
-
         std::string body{"ERROR: WRONG REQUEST"};
         res.set_body(body);
     });

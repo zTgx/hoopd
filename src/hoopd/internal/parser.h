@@ -9,6 +9,8 @@
 
 namespace hoopd {
 namespace http {
+    typedef std::unordered_map<std::string, std::string> Params;
+
 struct Message {
     std::vector<std::string> fields;
     std::vector<std::string> values;
@@ -17,9 +19,8 @@ struct Message {
     std::string method;
     std::string version;
     std::string query;
+    Params params;
 };
-
-typedef std::unordered_map<std::string, std::string> Params;
 
 class HttpParser : public noncopyable {
 public:

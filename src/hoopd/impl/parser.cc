@@ -25,6 +25,7 @@ Message HttpParser::parse(const char* buffer, long data_len) {
     
     return message;
 }
+
 static int on_message_begin(http_parser *p) {
     return 0;
 }
@@ -41,14 +42,12 @@ static int on_url(http_parser* p, const char *at, size_t length) {
 
     uint16_t off = httpurl.field_data[UF_QUERY].off;
     uint16_t len = httpurl.field_data[UF_QUERY].len;
-    // std::cout << "UF_QUERY off: " << off << std::endl;
-    // std::cout << "UF_QUERY len: " << len << std::endl;
 
     // Query: author=zTgx&license=MIT
     std::string query{url.substr(off, len)};
 
     {
-        std::unordered_map<std::string, std::string> params;
+        Params params;
 
         std::string delimiter = "&";
 
@@ -77,6 +76,8 @@ static int on_url(http_parser* p, const char *at, size_t length) {
                 params.emplace(key, val);
             }
         }
+        
+        message->params = params;
     }
 
     return 0;
