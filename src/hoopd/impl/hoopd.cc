@@ -1,6 +1,26 @@
 #include <hoopd/hoopd.h>
 #include <iostream>
 
+static void print_lanuch_mascot() {
+    std::string ascii_name = R"(
+    hhh       hhh
+    hhh       hhh                                                       ddd
+    hhh       hhh                                                       ddd  
+    hhh       hhh                           ppp                         ddd
+    hhhhhhhhhhhhh    oooooo       oooooo    ppp   pppppp        ddddddd ddd
+    hhh       hhh  oooooooooo   oooooooooo  ppp  ppppppppp    dddd      ddd
+    hhh       hhh oooooooooooo oooooooooooo ppppppppppppppp  ddd        ddd
+    hhh       hhh  oooooooooo   oooooooooo  ppp  ppppppppp    ddddd     ddd
+    hhh       hhh    oooooo       oooooo    ppp   pppppp        ddddddd ddd     
+                                            ppp   
+                                            ppp  
+                                            ppp
+                                            ppp
+                                            ppp
+    )";
+    std::cout << ascii_name << std::endl;
+}  
+
 namespace hoopd
 {
 HttpServer::HttpServer() : noncopyable() {
@@ -22,6 +42,8 @@ bool HttpServer::stop() {
 }
 
 bool HttpServer::run() {
+    print_lanuch_mascot();
+
     std::cout << "hoopd is started running on " << _settings.host << ":" << _settings.port << std::endl;
 
     _service.set_handler(_handler);
