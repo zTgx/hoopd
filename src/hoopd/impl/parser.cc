@@ -1,5 +1,4 @@
 #include <hoopd/internal/parser.h>
-#include <hoopd/internal/http_header.h>
 
 namespace hoopd {
 namespace http {
@@ -55,7 +54,7 @@ static int on_url(http_parser* p, const char *at, size_t length) {
     std::string query{url.substr(off, len)};
 
     {
-        Params params;
+        std::unordered_map<std::string, std::string> params;
 
         std::string delimiter = "&";
 

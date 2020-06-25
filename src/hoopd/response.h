@@ -3,9 +3,12 @@
 
 #include <hoopd/internal/descriptable.h>
 #include <hoopd/internal/nocopyable.h>
-#include <hoopd/internal/http_header.h>
+
+#include <hoopd/http.h>
 
 namespace hoopd {
+using namespace http;
+
 class Response : public Descriptable, public noncopyable {
 public:
     Response();

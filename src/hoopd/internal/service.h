@@ -1,10 +1,13 @@
 #ifndef __HOOPD_INTERNAL_SERVICE_H_
 #define __HOOPD_INTERNAL_SERVICE_H_
 
-#include <hoopd/settings.h>
+#include <hoopd/http.h>
 #include <hoopd/internal/handler.h>
 
 namespace hoopd {
+
+using Settings = http::Settings;
+
 class Service {
 public:
     void set_handler(Handler&);

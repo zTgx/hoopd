@@ -4,9 +4,14 @@
 #include <hoopd/internal/handler.h>
 
 // public headers
-#include <hoopd/settings.h>
+#include <hoopd/http.h>
 
 namespace hoopd {
+/**
+ * 
+ * HttpServer
+ * 
+*/
 class HttpServer : public noncopyable {
 public:
     explicit HttpServer();

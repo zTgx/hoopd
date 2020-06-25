@@ -12,6 +12,9 @@ Request::Request(const http::Message& message) {
         _http_header.add_entity(field.c_str(), value);
     }
 
+    // Params
+    _http_header.set_params(message.params);
+
     // Path
     path = message.path;
 
@@ -20,9 +23,6 @@ Request::Request(const http::Message& message) {
 
     // Method
     // method = http_method(message.method);
-
-    // Params
-    params = message.params;
 
     // Body
     body = message.body;
@@ -38,7 +38,7 @@ const void Request::description() const {
         std::cout << x.first << ":" << x.second << std::endl;
     }
 
-    for(auto x : params) {
+    for(auto x : _http_header.get_params()) {
         std::cout << x.first << ":" << x.second << std::endl;
     }
 }
