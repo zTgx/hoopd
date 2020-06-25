@@ -53,6 +53,9 @@ static int on_url(http_parser* p, const char *at, size_t length) {
     // Query: author=zTgx&license=MIT
     std::string query{url.substr(off, len)};
 
+    message->query = query;
+
+    // Parse params
     {
         std::unordered_map<std::string, std::string> params;
 

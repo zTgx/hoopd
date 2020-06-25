@@ -67,8 +67,12 @@ public:
     std::string path() const;
     void path(const std::string&);
 
+    std::string query() const;
+    void query(const std::string&);
+
 public:
     std::string data() const;
+    void dump() const;
 
 private:
     Headers _headers;
@@ -76,6 +80,7 @@ private:
     std::string _version;
     std::string _method;
     std::string _path;
+    std::string _query;
 };
 
 /**

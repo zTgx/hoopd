@@ -37,6 +37,12 @@ std::string HttpHeader::path() const {
 void HttpHeader::path(const std::string& path) {
     _path = path;
 }
+std::string HttpHeader::query() const {
+    return _query;
+}
+void HttpHeader::query(const std::string& query) {
+    _query = query;
+}
 
 std::string HttpHeader::data() const {
     std::stringstream stream;
@@ -48,6 +54,26 @@ std::string HttpHeader::data() const {
     }
 
     return stream.str();
+}
+void HttpHeader::dump() const {
+    std::cout << "############ HttpHeader #######################";
+
+    std::cout << "fiels and values" << std::endl;
+    for(auto x : headers()) {
+        std::cout << x.first << " : " << x.second << std::endl;
+    }
+
+    std::cout << "params : " << std::endl;
+    for(auto x : params()) {
+        std::cout << x.first << " : " << x.second << std::endl;
+    }
+
+    std::cout << "path: " << _path << std::endl;
+    std::cout << "query: " << _query << std::endl;
+    std::cout << "version: " << _version << std::endl;
+    std::cout << "method: " << _method << std::endl;
+    
+    std::cout << "############ HttpHeader END #######################";
 }
 
 //////////////////////////////////////////////////////////////
@@ -67,6 +93,9 @@ Request::Request(const http::Message& message) {
     // Path
     header.path(message.path);
 
+    // Query
+    header.query(message.query);
+
     // Version
     header.version(message.version);
 
@@ -83,13 +112,9 @@ Request::~Request() {
 const void Request::description() const {
     std::cout << "################# Request description ..." << std::endl;
 
-    for(auto x : header.headers()) {
-        std::cout << x.first << ":" << x.second << std::endl;
-    }
+    header.dump();
 
-    for(auto x : header.params()) {
-        std::cout << x.first << ":" << x.second << std::endl;
-    }
+    std::cout << "body: " << body << std::endl;
 }
 
 
