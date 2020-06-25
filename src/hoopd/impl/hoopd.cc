@@ -3,21 +3,12 @@
 
 static void print_lanuch_mascot() {
     std::string ascii_name = R"(
-    hhh       hhh
-    hhh       hhh                                                       ddd
-    hhh       hhh                                                       ddd  
-    hhh       hhh                           ppp                         ddd
-    hhhhhhhhhhhhh    oooooo       oooooo    ppp   pppppp        ddddddd ddd
-    hhh       hhh  oooooooooo   oooooooooo  ppp  ppppppppp    dddd      ddd
-    hhh       hhh oooooooooooo oooooooooooo ppppppppppppppp  ddd        ddd
-    hhh       hhh  oooooooooo   oooooooooo  ppp  ppppppppp    ddddd     ddd
-    hhh       hhh    oooooo       oooooo    ppp   pppppp        ddddddd ddd     
-                                            ppp   
-                                            ppp  
-                                            ppp
-                                            ppp
-                                            ppp
-    )";
+ooooo ooooo  ooooooo     ooooooo  oooooooooo ooooooooo   
+ 888   888 o888   888o o888   888o 888    888 888    88o 
+ 888ooo888 888     888 888     888 888oooo88  888    888 
+ 888   888 888o   o888 888o   o888 888        888    888 
+o888o o888o  88ooo88     88ooo88  o888o      o888ooo88   
+)";
     std::cout << ascii_name << std::endl;
 }  
 
