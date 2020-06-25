@@ -1,4 +1,5 @@
 #include <sstream>
+#include <iomanip>
 
 #include <hoopd/http.h>
 
@@ -56,24 +57,28 @@ std::string HttpHeader::data() const {
     return stream.str();
 }
 void HttpHeader::dump() const {
-    std::cout << "############ HttpHeader #######################";
+    std::cout << "#################### HttpHeader ####################" << std::endl;
 
-    std::cout << "fiels and values" << std::endl;
+    std::cout << "Fiels && Values >>>" << std::endl;
     for(auto x : headers()) {
-        std::cout << x.first << " : " << x.second << std::endl;
+        std::cout << std::setw(21) << std::left << x.first << " : " << x.second << std::endl;
     }
-
-    std::cout << "params : " << std::endl;
-    for(auto x : params()) {
-        std::cout << x.first << " : " << x.second << std::endl;
-    }
-
-    std::cout << "path: " << _path << std::endl;
-    std::cout << "query: " << _query << std::endl;
-    std::cout << "version: " << _version << std::endl;
-    std::cout << "method: " << _method << std::endl;
     
-    std::cout << "############ HttpHeader END #######################";
+    std::cout << std::endl;
+
+    std::cout << "Params >>>" << std::endl;
+    for(auto x : params()) {
+        std::cout << std::setw(21) << std::left << x.first << " : " << x.second << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    std::cout << std::setw(21) << std::left << "path"     << " : " << _path << std::endl;
+    std::cout << std::setw(21) << std::left << "query"    << " : " << _query << std::endl;
+    std::cout << std::setw(21) << std::left << "version"  << " : " << _version << std::endl;
+    std::cout << std::setw(21) << std::left << "method"   << " : " << _method << std::endl;
+    
+    std::cout << "#################### HttpHeader ####################" << std::endl;
 }
 
 //////////////////////////////////////////////////////////////
@@ -110,11 +115,13 @@ Request::~Request() {
 }
 
 const void Request::description() const {
-    std::cout << "################# Request description ..." << std::endl;
+    std::cout << "#################### Request>>> ####################" << std::endl;
 
     header.dump();
 
-    std::cout << "body: " << body << std::endl;
+    std::cout << std::setw(21) << std::left << "body"   << " : " << body << std::endl;
+
+    std::cout << "#################### <<<Request ####################" << std::endl;
 }
 
 
@@ -125,6 +132,12 @@ Response::Response() {
 Response::~Response() {
 }
 const void Response::description() const {
-    std::cout << "Response description..." << std::endl;
+    std::cout << "#################### Response>>> ####################" << std::endl;
+
+    header.dump();
+
+    std::cout << std::setw(21) << std::left << "body"   << " : " << body << std::endl;
+
+    std::cout << "#################### <<<Response ####################" << std::endl;
 }
 }
