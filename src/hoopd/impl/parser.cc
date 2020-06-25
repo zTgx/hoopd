@@ -34,12 +34,20 @@ static int on_url(http_parser* p, const char *at, size_t length) {
     std::string pattern = url.substr(0, length);
 
     Message *message = (struct Message*)p->data;
-    message->url = pattern;
 
     struct http_parser_url httpurl;
     http_parser_url_init(&httpurl);
     http_parser_parse_url(at, length, 0, &httpurl);
 
+{
+    //UF_PATH
+    uint16_t off = httpurl.field_data[UF_PATH].off;
+    uint16_t len = httpurl.field_data[UF_PATH].len;
+
+    // Query: author=zTgx&license=MIT
+    std::string path{url.substr(off, len)};
+    message->path = path;
+}
     uint16_t off = httpurl.field_data[UF_QUERY].off;
     uint16_t len = httpurl.field_data[UF_QUERY].len;
 

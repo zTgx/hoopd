@@ -14,7 +14,7 @@ namespace http {
 struct Message {
     std::vector<std::string> fields;
     std::vector<std::string> values;
-    std::string url;
+    std::string path;
     std::string body;
     std::string method;
     std::string version;
