@@ -26,9 +26,13 @@ int main() {
 
         std::string k{"Cache-control"};
         std::string v{"no-cache"};
-        res.set_header(k, v);
+        res.header.headers(k, v);
+        
+        std::string body{"ERROR: WRONG REQUEST"};
+        res.body = body;
 
-        res.set_body(message);
+        req.description();
+        res.description();
     });
 
     server.run();
