@@ -7,21 +7,10 @@
 #include <hoopd/internal/nocopyable.h>
 #include <hoopd/3rd/httpparser/http_parser.h>
 
+#include <hoopd/http.h>
+
 namespace hoopd {
 namespace http {
-
-struct Message {
-// public:
-    std::vector<std::string> fields;
-    std::vector<std::string> values;
-    std::string path;
-    std::string body;
-    std::string method;
-    std::string version;
-    std::string query;
-    std::unordered_map<std::string, std::string> params;
-};
-
 class HttpParser : public noncopyable {
 public:
     Message parse(const char*, long);

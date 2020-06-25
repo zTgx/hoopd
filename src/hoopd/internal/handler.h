@@ -3,11 +3,13 @@
 
 #include <iostream>
 #include <functional> //std::function
-#include <hoopd/request.h>
-#include <hoopd/response.h>
 #include <regex> // std::regex
 
+#include <hoopd/http.h>
+
 namespace hoopd {
+using namespace http;
+
 class Handler {    
 public:
     typedef std::function<void(const Request&, Response&)> Action;

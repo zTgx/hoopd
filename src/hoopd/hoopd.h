@@ -1,5 +1,5 @@
 // internal headers
-#include <hoopd/internal/nocopyable.h>
+// #include <hoopd/internal/nocopyable.h>
 #include <hoopd/internal/service.h>
 #include <hoopd/internal/handler.h>
 

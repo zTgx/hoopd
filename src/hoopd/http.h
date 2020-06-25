@@ -1,12 +1,33 @@
-#ifndef __HOOPD_INTERNAL_HTTPHEADER_H_
-#define __HOOPD_INTERNAL_HTTPHEADER_H_
+#ifndef __HOOPD_HTTP_H__
+#define __HOOPD_HTTP_H__
 
 #include <iostream>
 #include <unordered_map>
-#include <hoopd/3rd/json/json.hpp>
+#include <vector>
+
+#include <hoopd/internal/descriptable.h>
+#include <hoopd/internal/nocopyable.h>
 
 namespace hoopd {
 namespace http {
+
+/**
+ * 
+ * Inner Message for Parser 
+ * 
+ * */    
+struct Message {
+// public:
+    std::vector<std::string> fields;
+    std::vector<std::string> values;
+    std::string path;
+    std::string body;
+    std::string method;
+    std::string version;
+    std::string query;
+    std::unordered_map<std::string, std::string> params;
+};
+
 /**
  * 
  * HTTP SETTINGS
@@ -61,7 +82,7 @@ public:
 
     Headers get_headers() const;
     Params get_params() const;
-    
+
 public:
     std::string data() const;
 
@@ -69,7 +90,60 @@ private:
     Headers _headers;
     Params  _params;
 };
- 
+
+/**
+ * 
+ * Request
+ * 
+*/
+class Request : public Descriptable, 
+                public noncopyable {
+public:
+    explicit Request();
+    explicit Request(const Message&);
+    virtual ~Request();
+    
+public:
+    const void description() const;
+
+public:
+    HttpVersion version;
+    Method      method;
+    std::string target;
+    std::string path;
+    HttpHeader  _http_header;
+    std::string body;
+
+public:
+    bool reset();
+};
+
+/**
+ * 
+ * Response
+ * 
+*/
+class Response : public Descriptable, public noncopyable {
+public:
+    Response();
+    virtual ~Response();
+
+public: 
+    const void description() const;
+
+    void set_header(const std::string&, const std::string&);
+    void set_body(std::string&);
+
+    const HttpHeader get_header() const;
+    const std::string get_body() const;
+
+private:
+    HttpHeader _http_header;
+    std::string _body;
+
+public:
+    bool reset();
+};
 } // namespace http
 } // namespace hoopd
 
