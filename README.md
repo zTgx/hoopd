@@ -28,8 +28,7 @@ int main() {
         std::string v{"no-cache"};
         res.header.headers(k, v);
         
-        std::string body{"ERROR: WRONG REQUEST"};
-        res.body = body;
+        res.body = message;
 
         req.description();
         res.description();
