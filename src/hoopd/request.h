@@ -24,7 +24,7 @@ public:
     std::string path;
     HttpHeader  _http_header;
     std::string body;
-    http::Params _params;
+    http::Params params;
 
 public:
     bool reset();

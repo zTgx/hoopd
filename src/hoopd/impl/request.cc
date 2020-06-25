@@ -14,9 +14,15 @@ Request::Request(const http::Message& message) {
 
     // Path
     path = message.path;
-    
+
+    // Version
+    // version = message.version;
+
+    // Method
+    // method = http_method(message.method);
+
     // Params
-    _params = message.params;
+    params = message.params;
 
     // Body
     body = message.body;
@@ -32,7 +38,7 @@ const void Request::description() const {
         std::cout << x.first << ":" << x.second << std::endl;
     }
 
-    for(auto x : _params) {
+    for(auto x : params) {
         std::cout << x.first << ":" << x.second << std::endl;
     }
 }

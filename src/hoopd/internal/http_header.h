@@ -13,6 +13,7 @@ enum class Method {
     PUT,
     DELETE,
     UPDATE,
+    UNKNOW_METHOD,
 };
 
 enum class HttpVersion {
