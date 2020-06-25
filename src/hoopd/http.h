@@ -43,31 +43,6 @@ struct Settings {
 
 /**
  * 
- * HTTP supported METHODs
- * 
-*/
-enum class Method {
-    GET = 0,
-    POST,
-    PUT,
-    DELETE,
-    UPDATE,
-    UNKNOW_METHOD,
-};
-
-/**
- * 
- * HTTP supported VERSIONs
- * 
-*/
-enum class HttpVersion {
-    v1_0 = 0, 
-    v1_1,
-    V2_0 
-};
-
-/**
- * 
  * HTTP HEADERs
  * 
 */
@@ -77,11 +52,20 @@ public:
     typedef std::unordered_map<std::string, std::string> Params;
 
 public:
-    void add_entity(const std::string& key, const std::string &val);
-    void set_params(const Params& p);
+    Headers headers() const;
+    void headers(const std::string& key, const std::string &val);
 
-    Headers get_headers() const;
-    Params get_params() const;
+    Params params() const;
+    void params(const Params&);
+
+    std::string version() const;
+    void version(const std::string&);
+
+    std::string method() const;
+    void method(const std::string&);
+
+    std::string path() const;
+    void path(const std::string&);
 
 public:
     std::string data() const;
@@ -89,6 +73,9 @@ public:
 private:
     Headers _headers;
     Params  _params;
+    std::string _version;
+    std::string _method;
+    std::string _path;
 };
 
 /**
@@ -107,11 +94,7 @@ public:
     const void description() const;
 
 public:
-    HttpVersion version;
-    Method      method;
-    std::string target;
-    std::string path;
-    HttpHeader  _http_header;
+    HttpHeader  header;
     std::string body;
 
 public:

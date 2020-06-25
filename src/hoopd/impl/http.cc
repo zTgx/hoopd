@@ -6,17 +6,36 @@ namespace hoopd {
 
 using namespace http;
 
-void HttpHeader::add_entity(const std::string& key, const std::string &val) {
-    _headers.emplace(key, val);
-}
-void HttpHeader::set_params(const Params& p) {
-    _params = p;
-}
-HttpHeader::Headers HttpHeader::get_headers() const {
+/////////////////////////////////////////////////////////////////////////////////////
+HttpHeader::Headers HttpHeader::headers() const {
     return _headers;
 }
-HttpHeader::Params HttpHeader::get_params() const {
+void HttpHeader::headers(const std::string& key, const std::string &val) {
+    _headers.emplace(key, val);
+}
+HttpHeader::Params HttpHeader::params() const {
     return _params;
+}
+void HttpHeader::params(const Params& p) {
+    _params = p;
+}
+std::string HttpHeader::version() const {
+    return _version;
+}
+void HttpHeader::version(const std::string& version) {
+    _version = version;
+}
+std::string HttpHeader::method() const {
+    return _method;
+}
+void HttpHeader::method(const std::string& method) {
+    _method = method;
+}
+std::string HttpHeader::path() const {
+    return _path;
+}
+void HttpHeader::path(const std::string& path) {
+    _path = path;
 }
 
 std::string HttpHeader::data() const {
@@ -39,20 +58,20 @@ Request::Request(const http::Message& message) {
         std::string field = message.fields[i];
         std::string value = message.values[i];
 
-        _http_header.add_entity(field.c_str(), value);
+        header.headers(field.c_str(), value);
     }
 
     // Params
-    _http_header.set_params(message.params);
+    header.params(message.params);
 
     // Path
-    path = message.path;
+    header.path(message.path);
 
     // Version
-    // version = message.version;
+    header.version(message.version);
 
     // Method
-    // method = http_method(message.method);
+    header.method(message.method);
 
     // Body
     body = message.body;
@@ -64,11 +83,11 @@ Request::~Request() {
 const void Request::description() const {
     std::cout << "################# Request description ..." << std::endl;
 
-    for(auto x : _http_header.get_headers()) {
+    for(auto x : header.headers()) {
         std::cout << x.first << ":" << x.second << std::endl;
     }
 
-    for(auto x : _http_header.get_params()) {
+    for(auto x : header.params()) {
         std::cout << x.first << ":" << x.second << std::endl;
     }
 }
@@ -85,7 +104,7 @@ const void Response::description() const {
 }
 
 void Response::set_header(const std::string& key, const std::string& value) {
-    _http_header.add_entity(key, value);
+    _http_header.headers(key, value);
 }
 void Response::set_body(std::string& body) {
     _body = body;

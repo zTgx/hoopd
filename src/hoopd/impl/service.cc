@@ -122,7 +122,7 @@ void Service::handle_request(int fd) {
     Request req{message};
     Response res{};
 
-    Handler::Action h = _handler.handle(req.path);
+    Handler::Action h = _handler.handle(req.header.path());
     h(req, res);    
 
     // Use Scope
