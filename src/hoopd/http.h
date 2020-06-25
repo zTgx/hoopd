@@ -47,7 +47,7 @@ struct Settings {
  * 
 */
 enum class Method {
-    GET,
+    GET = 0,
     POST,
     PUT,
     DELETE,

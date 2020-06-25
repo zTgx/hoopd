@@ -31,29 +31,6 @@ std::string HttpHeader::data() const {
     return stream.str();
 }
 
-///////////////////////////////////////////////////////////
-
-Response::Response() {
-}
-Response::~Response() {
-}
-const void Response::description() const {
-    std::cout << "Response description..." << std::endl;
-}
-
-void Response::set_header(const std::string& key, const std::string& value) {
-    _http_header.add_entity(key, value);
-}
-void Response::set_body(std::string& body) {
-    _body = body;
-}
-const HttpHeader Response::get_header() const {
-    return _http_header;
-}
-const std::string Response::get_body() const {
-    return _body;
-}
-
 //////////////////////////////////////////////////////////////
 Request::Request() {}
 Request::Request(const http::Message& message) {
@@ -95,4 +72,29 @@ const void Request::description() const {
         std::cout << x.first << ":" << x.second << std::endl;
     }
 }
+
+
+///////////////////////////////////////////////////////////
+
+Response::Response() {
+}
+Response::~Response() {
+}
+const void Response::description() const {
+    std::cout << "Response description..." << std::endl;
+}
+
+void Response::set_header(const std::string& key, const std::string& value) {
+    _http_header.add_entity(key, value);
+}
+void Response::set_body(std::string& body) {
+    _body = body;
+}
+const HttpHeader Response::get_header() const {
+    return _http_header;
+}
+const std::string Response::get_body() const {
+    return _body;
+}
+
 }
