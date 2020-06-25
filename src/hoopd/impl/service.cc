@@ -132,11 +132,11 @@ void Service::handle_request(int fd) {
         const char* http_status = "HTTP/1.1 200 OK\n";
         s << http_status;
         
-        std::string header = res.get_header().data();
+        std::string header = res.header.data();
         s << header;
         s << "\n\n"; // \n\n indicates http header data is over.
 
-        s << res.get_body();
+        s << res.body;
         s << "\r\n";
 
         s.send();

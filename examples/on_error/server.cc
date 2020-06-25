@@ -14,9 +14,9 @@ int main() {
 
         std::string k{"Cache-control"};
         std::string v{"no-cache"};
-        res.set_header(k, v);
+        res.header.headers(k, v);
         
-        res.set_body(message);
+        res.body = message;
     });
 
     server.on_error([](const Request& req, Response& res) {
@@ -24,7 +24,7 @@ int main() {
         std::cout << req.header.path() << std::endl;
 
         std::string body{"ERROR: WRONG REQUEST"};
-        res.set_body(body);
+        res.body = body;
     });
 
     server.run();
