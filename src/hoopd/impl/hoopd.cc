@@ -52,7 +52,10 @@ HttpServer& HttpServer::get(const std::string& pattern, Handler::Action h) {
     _handler.push_back(_scope + pattern, h);
     return *this;
 }
-
+HttpServer& HttpServer::post(const std::string& pattern, Handler::Action h) {
+    _handler.push_back(_scope + pattern, h);
+    return *this;
+}
 HttpServer& HttpServer::on_error(Handler::Action h) {
     _handler.push_error(h);
     return *this;

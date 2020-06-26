@@ -28,6 +28,7 @@ public:
 public:
     HttpServer& set_scope(const std::string&);
     HttpServer& get(const std::string&, Handler::Action);
+    HttpServer& post(const std::string&, Handler::Action);
 
     HttpServer& on_error(Handler::Action);
 
