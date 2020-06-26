@@ -7,7 +7,7 @@ int main() {
     HttpServer server;
 
     server.set_scope("/api/v2");
-    server.post("/post", [](const Request& req, Response& res) {
+    server.post("/post", [](const http::Request& req, http::Response& res) {
         req.description();
         res.description();
         

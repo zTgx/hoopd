@@ -7,7 +7,7 @@
 #include <hoopd/internal/nocopyable.h>
 #include <hoopd/3rd/httpparser/http_parser.h>
 
-#include <hoopd/http.h>
+#include <hoopd/hoopd.h>
 
 namespace hoopd {
 namespace http {

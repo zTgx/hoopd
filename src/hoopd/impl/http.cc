@@ -1,7 +1,9 @@
 #include <sstream>
-#include <iomanip>
+#include <iomanip> // setw
+#include <iostream>
 
-#include <hoopd/http.h>
+#include <hoopd/hoopd.h>
+#include <hoopd/internal/parser.h>
 
 namespace hoopd {
 
