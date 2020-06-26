@@ -20,7 +20,7 @@ int main() {
     HttpServer server;
     server.set_scope("/api/v2");
 
-    server.get("/echo", [](const Request& req, Response& res) {
+    server.get("/echo", [](const http::Request& req, http::Response& res) {
         Echo e;
         std::string message = e.echo();
 
