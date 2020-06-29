@@ -78,5 +78,4 @@ More examples can be found [in the examples directory](examples/).
 - [zTgx](https://github.com/zTgx) - Author
 
 ## License
--------
 [MIT](https://github.com/zTgx/hoopd/blob/master/LICENSE)
