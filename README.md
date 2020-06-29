@@ -1,7 +1,26 @@
 # [hoopd](https://github.com/zTgx/hoopd) ![C/C++ CI](https://github.com/zTgx/hoopd/workflows/C/C++%20CI/badge.svg)
 hoopd will be a simple and easy to use restful server written in C++11.   
 
-## Basic Usage
+## Supported build tools versions
+g++ 8.4  +   
+cmake 3.17 +
+
+## Feature Overview
+- Build robust and scalable RESTful APIs
+- Group APIs
+- Data binding for JSON
+- Handy functions to send variety of HTTP responses
+- Centralized HTTP error handling
+
+## Benchmarks
+- WIP
+
+## Building
+```c++
+mkdir build && cd build && cmake .. && make
+```
+
+## Example
 * Server
 ```c++
 #include <hoopd/hoopd.h>
@@ -50,20 +69,14 @@ python client.py
 Hi there; my name is hoopd, Good to see you.
 ```
   
-Examples
----------------
+## More Examples
 More examples can be found [in the examples directory](examples/).  
 
 
-NOTE
-----
+## Credits
 
-### Build Tools
-g++ 8.4  +   
-cmake 3.17 +
+- [zTgx](https://github.com/zTgx) - Author
 
-
-License
+## License
 -------
-
-MIT license (© 2020 zTgx)
+[MIT](https://github.com/zTgx/hoopd/blob/master/LICENSE)
