@@ -1,6 +1,6 @@
 #Author : zTgx [747674262@qq.com]
 #Date   : 2020/6/7
-#Desc   : a http server
+#Desc   : Nginx inspired web framework
 
 PROJECT(hoopd)
 
