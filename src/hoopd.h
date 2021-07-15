@@ -7,8 +7,8 @@
 #include <functional>   // std::function
 #include <unordered_map>
 
-#include <hoopd/internal/descriptable.h>
-#include <hoopd/internal/nocopyable.h>
+#include <internal/descriptable.h>
+#include <internal/nocopyable.h>
 
 namespace hoopd {
 namespace http {

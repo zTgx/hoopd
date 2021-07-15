@@ -1,4 +1,4 @@
-#include <hoopd/internal/stream.h>
+#include <internal/stream.h>
 #include <iostream>
 #include <sys/socket.h> //send
 

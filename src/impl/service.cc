@@ -9,10 +9,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#include <hoopd/hoopd.h>
+#include <hoopd.h>
 
-#include <hoopd/internal/parser.h>
-#include <hoopd/internal/stream.h>
+#include <internal/parser.h>
+#include <internal/stream.h>
 
 #define MAX_EVENTS 1024
 #define HOOPD_RECV_BUFSIZ size_t(4096u)

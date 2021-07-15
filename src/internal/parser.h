@@ -4,10 +4,10 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
-#include <hoopd/internal/nocopyable.h>
-#include <hoopd/3rd/httpparser/http_parser.h>
+#include <internal/nocopyable.h>
+#include <3rd/httpparser/http_parser.h>
 
-#include <hoopd/hoopd.h>
+#include <hoopd.h>
 
 namespace hoopd {
 namespace http {

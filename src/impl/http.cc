@@ -2,8 +2,8 @@
 #include <iomanip> // setw
 #include <iostream>
 
-#include <hoopd/hoopd.h>
-#include <hoopd/internal/parser.h>
+#include <hoopd.h>
+#include <internal/parser.h>
 
 namespace hoopd {
 
