@@ -14,17 +14,20 @@ set(CMAKE_CXX_FLAGS "-static ${CMAKE_CXX_FLAGS}")
 
 include_directories(./src)
 
-# add_subdirectory (src)
+add_subdirectory (src)
 # add_subdirectory (test)
 
-# 3rd
-aux_source_directory(./src/thirdparty/httpparser HTTPPARSER)
+# # 3rd
+# aux_source_directory(./src/thirdparty/httpparser HTTPPARSER)
 
-# hoopd
-aux_source_directory(./src IMPL)
+# # hoopd
+# aux_source_directory(./src IMPL)
 
-# lib
-add_library(hoopd STATIC ${IMPL} ${HTTPPARSER})
+# # lib
+# add_library(hoopd STATIC ${IMPL} ${HTTPPARSER})
+
+# add_library(hoopdx STATIC $<TARGET_OBJECTS:hoopd>)
+
 
 # test
 enable_testing ()
