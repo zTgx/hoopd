@@ -6,6 +6,10 @@ add_subdirectory (thirdparty)
 aux_source_directory(./ HOOPD)
 
 # lib
-# add_library(hoopd STATIC ${HOOPD} ${HTTPPARSER})
+add_library(hoopd STATIC ${HOOPD})
 
-add_library(hoopd STATIC ${HOOPD} $<TARGET_OBJECTS:thirdparty>)
+# 链接 thirdparty 方式一
+# add_library(hoopd STATIC ${HOOPD} $<TARGET_OBJECTS:thirdparty>)
+
+# 链接 thirdparty 方式二
+target_link_libraries(hoopd thirdparty)
