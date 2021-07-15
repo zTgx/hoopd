@@ -163,14 +163,14 @@ private:
 
 /**
  * 
- * HttpServer
+ * Hoopd
  * 
 */
-class HttpServer : public noncopyable {
+class Hoopd : public noncopyable {
 public:
-    explicit HttpServer();
-    explicit HttpServer(const http::Settings&);
-    virtual ~HttpServer();
+    explicit Hoopd();
+    explicit Hoopd(const http::Settings&);
+    virtual ~Hoopd();
 
 public:
     bool is_running() const;
@@ -179,11 +179,11 @@ public:
     virtual bool stop();
     
 public:
-    HttpServer& set_scope(const std::string&);
-    HttpServer& get(const std::string&, Handler::Action);
-    HttpServer& post(const std::string&, Handler::Action);
+    Hoopd& set_scope(const std::string&);
+    Hoopd& get(const std::string&, Handler::Action);
+    Hoopd& post(const std::string&, Handler::Action);
 
-    HttpServer& on_error(Handler::Action);
+    Hoopd& on_error(Handler::Action);
 
 private:
     std::string _scope;

@@ -1,11 +1,11 @@
 #include <iostream>
-#include <hoopd/hoopd.h>
+#include <hoopd.h>
 
 using namespace hoopd;
 
 int main() {
     hoopd::Settings defaultSettings;
-    hoopd::HttpServer server(defaultSettings);
+    hoopd::Hoopd server(defaultSettings);
 
     server.set_scope("/api/v2");
 

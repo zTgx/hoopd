@@ -1,10 +1,10 @@
 #include <iostream>
-#include <hoopd/hoopd.h>
+#include <hoopd.h>
 
 using namespace hoopd;
 
 int main() {
-    HttpServer server;
+    Hoopd server;
 
     server.on_error([](const Request& req, Response& res) {
         req.description();

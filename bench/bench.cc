@@ -1,10 +1,10 @@
 #include <iostream>
-#include <hoopd/hoopd.h>
+#include <hoopd.h>
 
 using namespace hoopd;
 
 int main() {
-    HttpServer server;
+    Hoopd server;
     server.set_scope("/api/v2");
 
     server.get("/server-info", [](const Request& req, Response& res) {

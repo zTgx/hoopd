@@ -25,7 +25,7 @@ mkdir build && cd build && cmake .. && make
 ## Example
 * Server
 ```c++
-#include <hoopd/hoopd.h>
+#include <hoopd.h>
 
 using namespace hoopd;
 
@@ -38,7 +38,7 @@ public:
 };
 
 int main() {
-    HttpServer server;
+    Hoopd server;
     server.set_scope("/api/v2");
 
     server.get("/echo", [](const http::Request& req, http::Response& res) {

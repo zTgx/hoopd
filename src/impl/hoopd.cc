@@ -38,25 +38,25 @@ void Handler::push_error(Action h) {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-HttpServer::HttpServer() : noncopyable() {
+Hoopd::Hoopd() : noncopyable() {
 }
 
-HttpServer::HttpServer(const http::Settings& settings) : noncopyable() {
+Hoopd::Hoopd(const http::Settings& settings) : noncopyable() {
     _settings = settings;
 }
 
-HttpServer::~HttpServer() {
+Hoopd::~Hoopd() {
 }
 
-bool HttpServer::is_running() const {
+bool Hoopd::is_running() const {
     return true;
 }
 
-bool HttpServer::stop() {
+bool Hoopd::stop() {
     return true;
 }
 
-bool HttpServer::run() {
+bool Hoopd::run() {
     print_lanuch_mascot();
 
     std::cout << "hoopd is started running on " << _settings.host << ":" << _settings.port << std::endl;
@@ -67,20 +67,20 @@ bool HttpServer::run() {
     return _service.run();
 }
 
-HttpServer& HttpServer::set_scope(const std::string& scope) {
+Hoopd& Hoopd::set_scope(const std::string& scope) {
     _scope = scope;
     return *this;
 }
 
-HttpServer& HttpServer::get(const std::string& pattern, Handler::Action h) {
+Hoopd& Hoopd::get(const std::string& pattern, Handler::Action h) {
     _handler.push_back(_scope + pattern, h);
     return *this;
 }
-HttpServer& HttpServer::post(const std::string& pattern, Handler::Action h) {
+Hoopd& Hoopd::post(const std::string& pattern, Handler::Action h) {
     _handler.push_back(_scope + pattern, h);
     return *this;
 }
-HttpServer& HttpServer::on_error(Handler::Action h) {
+Hoopd& Hoopd::on_error(Handler::Action h) {
     _handler.push_error(h);
     return *this;
 }
