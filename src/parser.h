@@ -1,5 +1,4 @@
-#ifndef _HOOPD_INTERNAL_PARSER_H_
-#define _HOOPD_INTERNAL_PARSER_H_
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -29,5 +28,3 @@ static int on_body(http_parser* p, const char *at, size_t length);
 static int on_message_complete(http_parser *p);
 }
 }
-
-#endif

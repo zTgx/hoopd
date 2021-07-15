@@ -1,5 +1,4 @@
-#ifndef __HOOPD_INTERNAL_STREAM_H_
-#define __HOOPD_INTERNAL_STREAM_H_
+#pragma once
 
 #include <nocopyable.h>
 #include <string>
@@ -24,5 +23,3 @@ private:
 Stream& operator<<(Stream&, const std::string&);
 Stream& operator<<(Stream&, const char*);
 }
-
-#endif

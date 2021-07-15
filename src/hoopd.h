@@ -1,5 +1,4 @@
-#ifndef __HOOPD_H__
-#define __HOOPD_H__
+#pragma once
 
 #include <vector>
 #include <regex>        // std::regex
@@ -194,5 +193,3 @@ private:
     Handler _handler;
 };
 }
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef HOOPD_NONCOPYABLE_HPP
-#define HOOPD_NONCOPYABLE_HPP
+#pragma once
 
 namespace hoopd {
 
@@ -38,5 +37,3 @@ protected:
 typedef noncopyable_::noncopyable noncopyable;
 
 } // namespace hoopd
-
-#endif  // HOOPD_NONCOPYABLE_HPP
