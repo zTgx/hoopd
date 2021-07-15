@@ -6,7 +6,7 @@ using namespace hoopd;
 int main() {
     Hoopd server;
 
-    server.on_error([](const Request& req, Response& res) {
+    server.on_error([](const http::Request& req, http::Response& res) {
         req.description();
         res.description();
         

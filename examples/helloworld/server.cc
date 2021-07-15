@@ -7,14 +7,14 @@ int main() {
     Hoopd server;
     server.set_scope("/api/v2");
 
-    server.get("/hi", [](const Request& req, Response& res) {
+    server.get("/hi", [](const http::Request& req, http::Response& res) {
         std::string message{"Hi there; my name is hoopd, Good to see you."};
 
         std::string k{"Cache-control"};
         std::string v{"no-cache"};
-        res.set_header(k, v);
+        res.header.headers(k, v);
         
-        res.set_body(message);
+        res.body = message;
     });
 
     server.run();
