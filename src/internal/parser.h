@@ -5,7 +5,7 @@
 #include <vector>
 #include <unordered_map>
 #include <internal/nocopyable.h>
-#include <3rd/httpparser/http_parser.h>
+#include <thirdparty/httpparser/http_parser.h>
 
 #include <hoopd.h>
 

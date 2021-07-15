@@ -18,7 +18,7 @@ include_directories(./src)
 # add_subdirectory (test)
 
 # 3rd
-aux_source_directory(./src/3rd/httpparser HTTPPARSER)
+aux_source_directory(./src/thirdparty/httpparser HTTPPARSER)
 
 # hoopd
 aux_source_directory(./src/impl IMPL)
