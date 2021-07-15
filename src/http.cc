@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include <hoopd.h>
-#include <internal/parser.h>
+#include <parser.h>
 
 namespace hoopd {
 

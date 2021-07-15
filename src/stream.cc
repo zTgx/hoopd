@@ -1,4 +1,4 @@
-#include <internal/stream.h>
+#include <stream.h>
 #include <iostream>
 #include <sys/socket.h> //send
 

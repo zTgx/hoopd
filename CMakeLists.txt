@@ -21,7 +21,7 @@ include_directories(./src)
 aux_source_directory(./src/thirdparty/httpparser HTTPPARSER)
 
 # hoopd
-aux_source_directory(./src/impl IMPL)
+aux_source_directory(./src IMPL)
 
 # lib
 add_library(hoopd STATIC ${IMPL} ${HTTPPARSER})

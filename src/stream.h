@@ -1,7 +1,7 @@
 #ifndef __HOOPD_INTERNAL_STREAM_H_
 #define __HOOPD_INTERNAL_STREAM_H_
 
-#include <internal/nocopyable.h>
+#include <nocopyable.h>
 #include <string>
 #include <sstream>
 

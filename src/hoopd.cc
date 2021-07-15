@@ -1,8 +1,8 @@
 #include <iostream>
 
 #include <hoopd.h>
-#include <internal/parser.h>
-#include <internal/stream.h>
+#include <parser.h>
+#include <stream.h>
 
 static void print_lanuch_mascot() {
     std::string ascii_name = R"(

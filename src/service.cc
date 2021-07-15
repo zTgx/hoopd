@@ -11,8 +11,8 @@
 
 #include <hoopd.h>
 
-#include <internal/parser.h>
-#include <internal/stream.h>
+#include <parser.h>
+#include <stream.h>
 
 #define MAX_EVENTS 1024
 #define HOOPD_RECV_BUFSIZ size_t(4096u)
