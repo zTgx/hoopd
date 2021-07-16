@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../src/dummy.h"
+#include "hoopd.h"
 
 class DummyTest : public ::testing::Test {
 public:
